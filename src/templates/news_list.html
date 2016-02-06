@@ -1,0 +1,92 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Nachrichten</b><br> <br> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td align="left" valign="top">{if $forms.newslist.canedit}<a title="Neue Nachricht hinzufügen" href="index.php?action=addnews&page={$page}"><img src="images/buttons_add.gif" width="80" height="15" border="0"></a>{else}&nbsp;{/if} 
+          </td>
+          <td align="right" valign="top">{$forms.newslist.pages}</td>
+        
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_1,tbl_2"}
+  {section name=list loop=$newslist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="5">
+        <tr> 
+          <td colspan="2" width="100%" valign="top"> <b>{$newslist[list].title}</b> 
+            ({$newslist[list].ntime}&nbsp;{$newslist[list].ndate}) 
+						{if $newslist[list].uid}
+							von <a href="user.php?action=showdetails&id={$newslist[list].uid}"><img  title="Details von {$newslist[list].nick}"src="images/arrows_user.gif" width="12" height="13" border="0"></a>&nbsp;{$newslist[list].nick} 
+            	{if $newslist[list].usertitle} ({$newslist[list].usertitle}){/if}
+						{/if}							
+					 </td>
+         </tr>
+        <tr> 
+          <td  colspan="2" width="100%" valign="top">
+ 			{$newslist[list].content}
+			</td>
+         </tr>
+        <tr> 
+          <td width="80%" align="left" valign="top">{if $forms.newslist.canedit} 
+            <a  title="Bearbeiten" href="index.php?action=editnews&id={$newslist[list].nid}&page={$page}"><img src="images/buttons_edit.gif" border="0"></a>&nbsp;<a href="index.php?action=deletenews&id={$newslist[list].nid}&page={$page}" title="Löschen"><img src="images/buttons_delete.gif" border="0"></a>{else}&nbsp;{/if} 
+          </td>
+		  <td align="right" valign="top" width="20%"><a href="index.php?action=comments&id={$newslist[list].nid}"> 
+        <img src="images/arrows_message{$newslist[list].blink}.gif" width="12" height="13" border="0"  title="{$newslist[list].commenttitle}"></a></td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Nachrichten vorhanden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.newslist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,21 @@
+{strip} 
+<table class="content" cellspacing="0" cellpadding="0" width="100%"> 
+  <tr valign="top" class="lastline">  
+     <td width="16">&nbsp;</td> 
+     <td> 
+      {if $box.takscreen.info.incs} 
+        {if $box.takscreen.info.safe == $box.takscreen.info.incs}
+          <span class="green">
+        {else}
+          <span class="red">
+        {/if}
+          <b>{$box.takscreen.info.safe|default:"0"}/{$box.takscreen.info.incs} User safe<br></b>
+         </span>
+        {$box.takscreen.info.atter} {if $box.takscreen.info.atter == 1}Angriffsflotte{else}Angriffsflotten{/if}<br> 
+      {else} 
+           keine Incomings 
+      {/if} 
+     </td> 
+  </tr> 
+ </table> 
+ {/strip}

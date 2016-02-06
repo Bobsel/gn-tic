@@ -1,0 +1,89 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Benutzerstatistik</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> <div title="Neue Suche"></div></td>
+          <td width="50%" align="right">{$forms.userlist.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td width="33%">Name <a href="admin.php?action=userstats&sort=username&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.username.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=userstats&sort=username&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.username.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="33%">Koords <a href="admin.php?action=userstats&sort=koords&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.koords.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=userstats&sort=koords&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.koords.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="33%">letzter Login&nbsp;<a href="admin.php?action=userstats&sort=login&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.login.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=userstats&sort=login&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.login.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$userlist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td width="33%">{$userlist[list].nick}
+          </td>
+          <td width="33%">{$userlist[list].gala}:{$userlist[list].pos}
+          </td>
+          <td width="33%">{if $userlist[list].loggedin}{$userlist[list].date}&nbsp;{$userlist[list].time}{else}noch nie{/if}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Benutzer gefunden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.userlist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

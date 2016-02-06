@@ -1,0 +1,48 @@
+						<table cellspacing="1" cellpadding="3" width="100%" height="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.gscan_scanner}
+                  title="gescannt von {$scan.gscan_scanner}{if $scan.gscan_svs} {$scan.gscan_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Geschütz({$scan.gscan_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+								{if $scan.gscan_timeout}<span class="red" style="cursor: help;" title="Geschützscan ist älter als {$scan.timeout_hours} Stunden">{/if}
+                  {$scan.gscan_scanage} alt
+                {if $scan.gscan_timeout}</span>{/if}
+                </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Rubium:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_rubium|default:"0"}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Pulsar:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_pulsar|default:"0"}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Coon:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_coon|default:"0"}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Centurion:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_centurion|default:"0"}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Horus:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_horus|default:"0"}</td>
+              </tr>
+              {section start=0 loop=`$scan.maxrows-6` name="gscan"}
+                <tr> 
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+              {/section}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.gscan_copy}');" name="gscan_copy" type="button" class="form_small" value="IRC Copy" title="Geschützscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.gscan_link}');" name="gscan_popup" type="button" class="form_small" value="IRC Popup" title="Geschützscan  als Popup öffnen">
+                </td>
+              </tr>
+            </table>

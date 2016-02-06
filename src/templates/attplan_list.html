@@ -1,0 +1,62 @@
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>geplante Angriffe</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td colspan="2" align="right">{$pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {foreach from=$items.list item=item}
+		<tr> 
+			<td height="30" colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3">
+					<tr align="center">
+						<td width="50%">{$item.title}</td>
+						<td width="30%">{if $item.scan_time}<b>{$item.scan_time}</b>{else}Scans verfügbar{/if}</td>
+						<td width="20%">{if $item.showlink}<a href="attplan.php?action=view&id={$item.attid}">Ansehen</a>{else}<span class="red">Geschlossen</span>{/if}</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+	{foreachelse}
+		<tr> 
+			<td  class="tbl_2" height="30" colspan="2"> 
+				<table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+					<tr> 
+						<td align="center"><strong>Keine Angriffe geplant</strong></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_4">
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+	{/foreach}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

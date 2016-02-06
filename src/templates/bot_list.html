@@ -1,0 +1,80 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>IRC Bots</b><br> <br> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr align="center"> 
+          <td width="15%">Name</td>
+          <td width="30%">Status</td>
+          <td width="15%">Host</td>
+          <td width="40%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$list}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr align="center"> 
+          <td width="15%">{$list[list].name} </td>
+          <td width="30%"> 
+					{if $list[list].authstring} 
+						<span class="green">online</span> <br>
+						online seit: {$list[list].firstauth}
+					{else} 
+						<span class="red">offline</span><br>
+						letzter login: 
+						{if $list[list].lastauth}
+							{$list[list].lastauth}
+						{else}
+							unbekannt
+						{/if}
+          {/if} </td>
+          <td width="15%"> {$list[list].host} </td>
+          <td width="40%"> <a  title="{$list[list].name} bearbeiten" href="admin.php?action=editbot&id={$list[list].botid}"><img src="images/buttons_edit.gif" width="61" height="17" border="0"></a> 
+            <a  title="{$list[list].name} löschen" href="admin.php?action=deletebot&id={$list[list].botid}"><img src="images/buttons_delete.gif" width="61" height="17" border="0"></a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Bots vorhanden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,131 @@
+<form name="form" method="post" action="user.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="fleetmanuell">
+  <input name="id" type="hidden" id="id" value="{$id}">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Flotte updaten</b><br> <br> </td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    {if $errors}
+    <tr> 
+      <td class="tbl_6" colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr><td>{foreach from=$errors item=error}{$error}<br>{/foreach}</td></tr>
+				</table>
+    	</td>
+		</tr>
+		<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+	<tr>
+		<td class="tbl_6" colspan="2">
+			<table class="tbl_6"  cellspacing="7" cellpadding="2">
+          <tr align="center"> 
+            <td >&nbsp; </td>
+            <td ><strong>Orbit</strong></td>
+            <td ><strong>Flotte 1</strong></td>
+            <td ><strong>Flotte 2</strong></td>
+          </tr>
+          <tr> 
+            <td>Jäger: </td>
+            <td align="center"><input name="jaeger0" class="{$items.jaeger0.class}" type="text" value="{$items.jaeger0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="jaeger1" class="{$items.jaeger1.class}" type="text" value="{$items.jaeger1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="jaeger2" class="{$items.jaeger2.class}" type="text" value="{$items.jaeger2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Bomber: </td>
+            <td align="center"><input name="bomber0" class="{$items.bomber0.class}" type="text" value="{$items.bomber0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="bomber1" class="{$items.bomber1.class}" type="text" value="{$items.bomber1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="bomber2" class="{$items.bomber2.class}" type="text" value="{$items.bomber2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Fregatte: </td>
+            <td align="center"><input name="fregatten0" class="{$items.fregatten0.class}" type="text" value="{$items.fregatten0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="fregatten1" class="{$items.fregatten1.class}" type="text" value="{$items.fregatten1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="fregatten2" class="{$items.fregatten2.class}" type="text" value="{$items.fregatten2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Zerstörer: </td>
+            <td align="center"><input name="zerstoerer0" class="{$items.zerstoerer0.class}" type="text" value="{$items.zerstoerer0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="zerstoerer1" class="{$items.zerstoerer1.class}" type="text" value="{$items.zerstoerer1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="zerstoerer2" class="{$items.zerstoerer2.class}" type="text" value="{$items.zerstoerer2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Kreuzer: </td>
+            <td align="center"><input name="kreuzer0" class="{$items.kreuzer0.class}" type="text" value="{$items.kreuzer0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="kreuzer1" class="{$items.kreuzer1.class}" type="text" value="{$items.kreuzer1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="kreuzer2" class="{$items.kreuzer2.class}" type="text" value="{$items.kreuzer2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Schlachtschiff: </td>
+            <td align="center"><input name="schlachter0" class="{$items.schlachter0.class}" type="text" value="{$items.schlachter0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="schlachter1" class="{$items.schlachter1.class}" type="text" value="{$items.schlachter1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="schlachter2" class="{$items.schlachter2.class}" type="text" value="{$items.schlachter2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Trägerschiff: </td>
+            <td align="center"><input name="traeger0" class="{$items.traeger0.class}" type="text" value="{$items.traeger0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="traeger1" class="{$items.traeger1.class}" type="text" value="{$items.traeger1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="traeger2" class="{$items.traeger2.class}" type="text" value="{$items.traeger2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Kaperschiff: </td>
+            <td align="center"><input name="kleptoren0" class="{$items.kleptoren0.class}" type="text" value="{$items.kleptoren0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="kleptoren1" class="{$items.kleptoren1.class}" type="text" value="{$items.kleptoren1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="kleptoren2" class="{$items.kleptoren2.class}" type="text" value="{$items.kleptoren2.value}" size="5" maxlength="10"></td>
+          </tr>
+          <tr> 
+            <td>Schutzschiff: </td>
+            <td align="center"><input name="cancris0" class="{$items.cancris0.class}" type="text" value="{$items.cancris0.value}" size="5" maxlength="10"></td>
+            <td  align="center"><input name="cancris1" class="{$items.cancris1.class}" type="text" value="{$items.cancris1.value}" size="5" maxlength="10"></td>
+            <td align="center^"><input name="cancris2" class="{$items.cancris2.class}" type="text" value="{$items.cancris2.value}" size="5" maxlength="10"></td>
+          </tr>
+        </table>
+		</td>
+  </tr>
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr> 
+		<td class="tbl_6" height="30" width="30%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					<td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+					<td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+						Hilfe </a>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="tbl_6" height="30" width="70%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					  <td> 
+							<a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" border="0"></a> 
+              <input name="next" type="image" id="next" src="images/buttons_next.gif" width="61" height="17" border="0"> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr class="tbl_5"> 
+		<td colspan="2"> <p><br>
+			</p>
+		</td>
+	</tr>
+</table> 
+</form>

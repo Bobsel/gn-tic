@@ -1,0 +1,81 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Memberliste</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> <div title="Neue Suche"> </div></td>
+          <td width="50%" align="right">{$pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+		<form   style="display:inline" action="index.php" method="post" name="form1">
+		<input name="send" type="hidden" value="1">
+		<input name="action" type="hidden" value="members">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr align="center"> 
+          <td >Nickname <a href="index.php?action=members&sort=nick&order=asc"><img src="images/arrows_orderby_asc{$sort.nick.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="index.php?action=members&sort=nick&order=desc"><img src="images/arrows_orderby_desc{$sort.nick.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td >Koords <a href="index.php?action=members&sort=koords&order=asc"><img src="images/arrows_orderby_asc{$sort.koords.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="index.php?action=members&sort=koords&order=desc"><img src="images/arrows_orderby_desc{$sort.koords.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td ><select   onChange="submit()" class="form" name="ally" id="ally">
+                <option value="0" {$ally0}>alle</option>
+								{foreach from=$allylist item=item}
+	                <option value="{$item.aid}" {$item.selected}>[{$item.tag}] {$item.name}</option>
+								{/foreach}
+              </select></td>
+        </tr>
+      </table>
+		</form>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+	{foreach from=$userlist item=user}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr align="center"> 
+          <td width="20%" align="center">[{$user.tag}]</td>
+          <td width="20%" align="center" nowrap>{$user.nick} {if $user.usertitle}({$user.usertitle}){/if}</td>
+          <td width="40%" align="center">{$user.phone|default:"keine"} </td>
+          <td width="20%" align="center">{$user.gala}:{$user.pos} </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/foreach}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

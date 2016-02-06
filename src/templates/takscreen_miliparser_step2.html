@@ -1,0 +1,181 @@
+<form name="form" method="post" action="takscreen.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="step" type="hidden" value="{$step}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="miliparser">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><strong>Miliscan laden, Flotten zuweisen</strong><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		<tr> 
+			<td  class="tbl_1" height="15" colspan="2"> 
+				<table width="100%" cellpadding="3" cellspacing="3" class="tbl_1">
+						<tr> 
+						<td><strong>Miliscan {$mili.nick} ({$mili.gala}:{$mili.pos}) {$mili.mili_prec}% 
+              &nbsp;&nbsp;Alter: {$mili.mili_scanage}</strong></td>
+						</tr>
+				</table>
+			</td>
+		</tr>
+		<tr> 
+			<td  class="tbl_1" colspan="2"> 
+				<table cellpadding="0" cellspacing="0" class="tbl_small">
+					<tr align="center"> 
+						<td ><img src="/" width="5" height="1"></td>
+						<td>Flotte</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Cancris</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Freggs</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Zerris</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Kreuzer</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Schlachter</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Träger</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Jäger</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Bomber</td>
+						<td ><img src="/" width="3" height="1"></td>
+						<td>Cleps</td>
+						<td ><img src="/" width="5" height="1"></td>
+					</tr>
+					{foreach from=$mili.mili_fleets item=fleet}
+					<tr > 
+						<td ><img src="/" width="5" height="1"></td>
+						<td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+						<td ><img src="/" width="5" height="1"></td>
+					</tr>
+					<tr class="{$fleet.class}" > 
+						<td ><img src="/" width="5" height="15"></td>
+						<td align="center" >{$fleet.type} {$fleet.dir}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center" >{$fleet.cancris}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.fregatten}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.zerstoerer}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.kreuzer}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.schlachter}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.traeger}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.jaeger}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.bomber}</td>
+						<td align="center" ><img src="/" width="3" height="1"></td>
+						<td align="center">{$fleet.kleptoren}</td>
+						<td ><img src="/" width="5" height="1"></td>
+					</tr>
+					{/foreach}
+				</table>
+			</td>
+		</tr>
+		<tr > 
+			<td colspan="2"><img src="/" width="1" height="3"></td>
+		</tr>
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+		<tr > 
+			<td colspan="2"><img src="/" width="1" height="3"></td>
+		</tr>
+		{if $errors}
+			<tr> 
+      <td class="tbl_6"colspan="2" style="padding: 5px;">
+      <span class="red"><b>
+        {foreach from=$errors item=error}
+          {$error}<br>
+        {/foreach}
+      </b></span>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		{/if}
+		{if $items.fleet1}
+			<tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Flotte 1:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > 
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><select  class="form" name="fleet1">
+								{foreach from=$items.fleet1.list item=status}
+									<option value="{$status.value}" {$status.selected}>{$status.title}</option>
+								{/foreach}
+              </select>
+            </td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		{/if}
+		{if $items.fleet2}
+			<tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Flotte 2:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > 
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><select  class="form" name="fleet2">
+								{foreach from=$items.fleet2.list item=status}
+									<option value="{$status.value}" {$status.selected}>{$status.title}</option>
+								{/foreach}
+              </select>
+            </td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		{/if}
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table>
+</form>

@@ -1,0 +1,171 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5">
+    <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr>
+          <td colspan="2"><b>{$scantitle}</b><br> <br> </td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {if $showtargets}
+  <tr>
+    <td class="tbl_6" height="30" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr>
+          <td align="left"><a  title="Neue Suche" href="scans.php?action=targets&subaction=newsearch"><img src="images/buttons_new_search.gif" border="0"></a></td>
+          <td>&nbsp;</td>
+          <td  align="right">{$forms.scanlist.pages}</td>
+        </tr>
+        <tr>
+          <td width="15%" align="left">Koords <a href="scans.php?action=targets&sort=koords&order=asc"><img src="images/arrows_orderby_asc{$forms.scanlist.koords.asc}.gif" width="12" height="13" border="0"></a>
+            <a href="scans.php?action=targets&sort=koords&order=desc"><img src="images/arrows_orderby_desc{$forms.scanlist.koords.desc}.gif" width="12" height="13" border="0"></a>
+          </td>
+          <td width="15%" align="left">Exen <a href="scans.php?action=targets&sort=exen&order=asc"><img src="images/arrows_orderby_asc{$forms.scanlist.exen.asc}.gif" width="12" height="13" border="0"></a>
+            <a href="scans.php?action=targets&sort=exen&order=desc"><img src="images/arrows_orderby_desc{$forms.scanlist.exen.desc}.gif" width="12" height="13" border="0"></a>
+          </td>
+          <td width="70%" align="right"></td>
+        </tr>
+      </table></td>
+  </tr>
+  {else}
+  <tr>
+    <td class="tbl_6" height="30" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        {if $showform}
+        <tr>
+          <td  align="right" colspan="3">{$forms.scanlist.pages}</td>
+        </tr>
+        <tr>
+          <td width="15%" align="left">Koords <a href="scans.php?sort=koords&order=asc"><img src="images/arrows_orderby_asc{$forms.scanlist.koords.asc}.gif" width="12" height="13" border="0"></a>
+            <a href="scans.php?sort=koords&order=desc"><img src="images/arrows_orderby_desc{$forms.scanlist.koords.desc}.gif" width="12" height="13" border="0"></a></td>
+          <td width="70%" align="center" valign="middle"> <form action="scans.php" method="post" name="form1" id="form1"  style="display:inline">
+              <input name="step" type="hidden" id="step" value="1">
+              <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+              {if $prev}<a href="scans.php?gala={$prev}" class="menu">&laquo;&laquo;</a>&nbsp;{/if}
+              <input  class="form" name="gala" type="text" value="{$forms.scanlist.gala}" size="4" maxlength="4">
+              {if $next}&nbsp;<a href="scans.php?gala={$next}" class="menu">&raquo;&raquo;</a>
+              &nbsp; {/if}
+              <input class="form" name="show" type="submit" id="show" value="Anzeigen">
+            </form></td>
+          <td width="15%" align="right"></td>
+        </tr>
+        {/if}
+        <tr>
+          <td colspan="3" align="right"><a  title="{$hideoldsubtitle}" href="scans.php?hideold={$hideoldparam}&send">{$hideoldtitle}</a></td>
+        </tr>
+      </table></td>
+  </tr>
+  {/if}
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="#EFEFEF"}
+  {foreach item=scan from=$scanlist} 
+	{cycle print=false assign="color"}
+  <tr>
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#E8E7E7" style="padding: 5px;" >
+                        <table   width="100%" cellpadding="3"  cellspacing="1" bgcolor="#000000" >
+        <tr>
+          <td   {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="{$color}">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr {if $scan.reserved == 1}bgcolor="red"{elseif $scan.reserved == 2}bgcolor="lightgreen"{/if}>
+                <td align="left">
+                  &nbsp;
+                  {if $scan.hasnews || $scan.hasmili}
+                    <a  href="javascript:switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')" title="Weitere Scans"><img src="images/plus.gif" border="0" id="hideimg{$scan.sid}"></a>
+                  {else}
+                    &nbsp;&nbsp;
+                  {/if}
+                  &nbsp;&nbsp;
+                  <a name="{$scan.sid}"></a>
+                  <a href="scans.php?gala={$scan.gala}&pos={$scan.pos}{$scan.backlink}"><b>{$scan.gala}:{$scan.pos} {$scan.nick}</b></a>
+                </td>
+                <td align="right">
+                <table cellspacing="0" cellpadding="0"><tr><td>
+                {if $scan.uid}<span class="{$scan.atter_class}"><b>reserviert von {$scan.atter_nick} ({$scan.atter_gala}:{$scan.atter_pos})</b></span>{else}&nbsp;{/if}
+                </td></tr></table>
+                </td>
+                <td align="right">
+                {if $scan.simulator_link}
+                  <a href="{$scan.simulator_link}{$scan.backlink}" title="Im Kampfsimulator berechnen">Simulieren</a>&nbsp;&nbsp;
+                {else}
+                  &nbsp;
+                {/if}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        {if $scan.hasunit || $scan.hassector || $scan.hasgscan}
+        <tr>
+          {if $scan.hassector}
+            <td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;">
+              {include file="scan_sektor.html"}
+            </td>
+          {/if}
+          {if $scan.hasgscan}
+            <td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;">
+              {include file="scan_gscan.html"}
+            </td>
+          {/if}
+          {if $scan.hasunit}
+            <td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;">
+            {include file="scan_unit.html"}
+            </td>
+         {/if}
+          </tr>
+                                        {/if}
+                                {if $scan.hasmili}
+        <tr id="militd{$scan.sid}" style="display: none;">
+          <td  style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="{$color}" valign="top">
+            {include file="scan_mili.html"}
+          </td>
+        </tr>
+        {/if}
+                                {if $scan.hasnews}
+        <tr style="display: none;" id="newstd{$scan.sid}">
+          <td   style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} valign="top" bgcolor="{$color}">
+           {include file="scan_news.html"}
+          </td>
+        </tr>
+                                {/if}
+       </table>
+       {if $scan.expand}
+        <SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+        <!--
+          switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')
+        -->
+        </SCRIPT>
+       {/if}
+                        </td>
+  </tr>
+  <tr>
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  {foreachelse}
+  <tr>
+    <td  height="30" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3">
+        <tr>
+          <td align="center"><strong>Keine Scans gefunden</strong></td>
+        </tr>
+      </table>
+        </td>
+  </tr>
+  {/foreach}
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr class="tbl_5">
+    <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr>
+          <td> <div align="right">{$forms.scanlist.pages}</div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr class="tbl_5">
+    <td colspan="2"><br> </td>
+  </tr>
+</table>

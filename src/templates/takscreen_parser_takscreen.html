@@ -1,0 +1,159 @@
+<form name="form" method="post" action="takscreen.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="takscreenparse_step1" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="takparser">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Taktikscreen parsen</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    {if $errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top" class="red">
+						{foreach from=$errors item=error}
+							<b>{$error}</b><br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+    {if $parse_errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top" class="red">
+						{foreach from=$parse_errors item=error}
+							{$error}<br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+    {if $parse_messages}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top">
+						{foreach from=$parse_messages item=msg}
+							{$msg}<br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Taktikschirm:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><textarea class="form" name="data" cols="40" rows="7" id="data"></textarea>
+            </td>
+            <td valign="top">Rechtsklick auf den Taktikschirm,Quelltext anzeigen, 
+              Alles markieren, ins Fenster reinkopieren, fertig<br>
+              <br>
+              Mozilla: This Frame -&gt; View Frame Source</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Atter parsen:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><input type="checkbox" name="parse_atter" value="1" {$items.parse_atter.checked}>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Deffer parsen:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><input type="checkbox" name="parse_deffer" value="1" {$items.parse_deffer.checked}>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    {*
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Flottenstatus der User parsen:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><input type="checkbox" name="parse_user" value="1" {$items.parse_user.checked}>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    *}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

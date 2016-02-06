@@ -1,0 +1,521 @@
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5">
+    <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr>
+          <td ><b>Incoming auf ({$inc.ogala}:{$inc.opos}) {$inc.onick}</b> {if 
+            $inc.canupdateatter}<a href="user.php?action=fleet&id={$inc.uid}" title="Flotte von {$inc.onick} updaten"><img src="images/arrows_search.gif" width="12" height="13" border="0"></a>{/if} 
+            {if $inc.save}<span class="tbl_red"><strong>[safe]</strong></span>{/if}<br>
+            <br> </td>
+        </tr>
+      </table></td>
+
+  </tr>
+  <tr class="tbl_5">
+    <td colspan="2"> 
+		<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td align="left" > <a href="{$backlink}" title="zurück"><img src="images/buttons_back.gif" border="0"></a>&nbsp;&nbsp;</td>
+          <td align="right" > <a href="takscreen.php?action=adddeffintern&id={$inc.incid}" title="Hier deffen">Hier 
+            deffen</a>&nbsp; {if $inc.cansetsave} {if $inc.save} <a href="takscreen.php?action=unsave&id={$inc.incid}"  title="inc auf unsafe setzen" ><img src="images/arrows_add.gif" width="12" height="13" border="0"></a>&nbsp; 
+            {else} <a href="takscreen.php?action=save&id={$inc.incid}"  title="inc auf safe setzen" ><img src="images/arrows_info.gif" width="12" height="13" border="0"></a>&nbsp; 
+            {/if} {/if} {if $inc.canrecallall} <a href="takscreen.php?action=recallall&id={$inc.incid}"  title="alles recallen" ><img src="images/arrows_delete.gif" width="12" height="13" border="0"></a>&nbsp; 
+            {/if} </td>
+        </tr>
+      </table>
+		</td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"} {cycle print=false assign="class"}
+  <tr>
+    <td  class="{$class}" height="15" colspan="2"> <table width="100%" cellpadding="3" cellspacing="3" class="{$class}">
+        <tr>
+          <td><strong>Flotte des Angegriffenen </strong>letztes update: {$inc.fleetupdate}</td>
+        </tr>
+      </table></td>
+  </tr>
+
+  <tr>
+    <td  class="{$class}" colspan="2"> <table cellpadding="0" cellspacing="0" class="tbl_small">
+        <tr align="center">
+          <td ><img src="/" width="5" height="1"></td>
+          <td>Flotte</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Cancris</td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td>Freggs</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Zerris</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Kreuzer</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Schlachter</td>
+
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Träger</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Jäger</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Bomber</td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td>Cleps</td>
+          <td ><img src="/" width="5" height="1"></td>
+        </tr>
+        {foreach from=$userfleet item=fleet}
+        <tr >
+          <td ><img src="/" width="5" height="1"></td>
+          <td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+          <td ><img src="/" width="5" height="1"></td>
+        </tr>
+
+        <tr {$fleet.class} >
+          <td ><img src="/" width="5" height="15"></td>
+          <td align="center" >{$fleet.name}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center" >{$fleet.cancris}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.fregatten}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+
+          <td align="center">{$fleet.zerstoerer}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.kreuzer}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.schlachter}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.traeger}</td>
+
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.jaeger}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.bomber}</td>
+          <td align="center" ><img src="/" width="3" height="1"></td>
+          <td align="center">{$fleet.kleptoren}</td>
+          <td ><img src="/" width="5" height="1"></td>
+
+        </tr>
+        {/foreach} 
+			</table>
+		</td>
+  </tr>
+  <tr>
+    <td  class="{$class}" height="15" colspan="2"> 
+		<table width="100%" cellpadding="3" cellspacing="3" class="{$class}">
+        <tr>
+          <td><strong>Orbitalverteidigung </strong>letztes update: {$inc.deffupdate}</td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td  colspan="2"> 
+			<table cellpadding="0" cellspacing="0" class="tbl_small">
+				<tr align="center"> 
+					<td ><img src="/" width="5" height="15"></td>
+					<td>Horus</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>Rubium</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>Pulsar</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>Coon</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>Centurion</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+				<tr> 
+					<td ><img src="/" width="5" height="1"></td>
+					<td class="tbl_4" colspan="11"><img src="/" width="1" height="1"></td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+				<tr align="center"> 
+					<td ><img src="/" width="5" height="15"></td>
+					<td>{$inc.horus}</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>{$inc.rubium}</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>{$inc.pulsar}</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>{$inc.coon}</td>
+					<td ><img src="/" width="3" height="1"></td>
+					<td>{$inc.centurion}</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+			</table>
+		</td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr>
+    <td  class="{$class}" height="15" colspan="2"> <table width="100%" cellpadding="3" cellspacing="3" class="{$class}">
+        <tr>
+          <td><strong>Angreifer</strong></td>
+        </tr>
+      </table></td>
+
+  </tr>
+  <tr>
+    <td  class="{$class}" colspan="2"> 
+			<table cellpadding="0" cellspacing="0" class="tbl_small">
+        <tr align="center">
+          <td style="padding: 2px;">Sektor</td>
+          <td style="padding: 2px;">Kommandant</td>
+          <td style="padding: 2px;">Flotte</td>
+          <td>ETA</td>
+          <td>Cancris</td>
+          <td>Freggs</td>
+          <td>Zerris</td>
+          <td>Kreuzer</td>
+          <td>Schlachter</td>
+          <td>Träger</td>
+          <td>Jäger</td>
+          <td>Bomber</td>
+          <td>Cleps</td>
+          <td>Genauigkeit</td>
+          <td>SVs</td>
+          <td>&nbsp;</td>
+        </tr>
+				<tr class="tbl_4">
+					<td colspan="16"><img src="/" width="1" height="1"></td>
+				</tr>
+        {foreach from=$atterlist item=fleet}
+        <tr align="center" title="{$fleet.title}">
+          <td>{$fleet.igala}:{$fleet.ipos}</td>
+          <td>{$fleet.inickname}</td>
+          <td nowrap>Flotte {$fleet.fleetnum}</td>
+          <td>{$fleet.eta}</td>
+          <td>{$fleet.cancris}</td>
+          <td>{$fleet.fregatten}</td>
+          <td>{$fleet.zerstoerer}</td>
+          <td>{$fleet.kreuzer}</td>
+          <td>{$fleet.schlachter}</td>
+          <td>{$fleet.traeger}</td>
+          <td>{$fleet.jaeger}</td>
+          <td>{$fleet.bomber}</td>
+          <td>{$fleet.kleptoren}</td>
+          <td>{$fleet.prec}%</td>
+          <td>{$fleet.svs}</td>
+          <td nowrap align="left">
+					{if $fleet.canrecall}
+			  		<a  title="Atter recallen" href="takscreen.php?action=atterrecall&id={$fleet.atterid}"><img src="images/arrows_delete_2.gif" border="0"></a>&nbsp;
+          {/if}
+		  		 <a  title="Atter updaten" href="takscreen.php?action=updateatter&id={$fleet.atterid}"><img src="images/arrows_search_2.gif" border="0"></a>&nbsp;
+				  {if $fleet.hasmili}
+					 <a  title="Miliscan laden"  class="noline" href="takscreen.php?action=miliparser&step=1&id={$fleet.sid}">Miliscan laden</a>	 
+					 {/if}
+					</td>
+        </tr>
+				<tr class="tbl_4" >
+					<td colspan="16"><img src="/" width="1" height="1"></td>
+				</tr>
+        {/foreach}
+				</table>
+			</td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="5"></td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="5"></td>
+  </tr>
+  <tr>
+    <td  class="{$class}" height="15" colspan="2"> <table width="100%" cellpadding="3" cellspacing="3" class="{$class}">
+        <tr>
+          <td><strong>Verteidiger</strong></td>
+        </tr>
+      </table></td>
+
+  </tr>
+  <tr>
+    <td  class="{$class}" colspan="2"> {if $defferlist}
+      <table cellpadding="0" cellspacing="0" class="tbl_small">
+        <tr align="center">
+          <td ><img src="/" width="5" height="1"></td>
+          <td>Sektor</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Kommandant</td>
+
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Flotte</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>ETA</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Cancris</td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td>Freggs</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Zerris</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Kreuzer</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Schlachter</td>
+
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Träger</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Jäger</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>Bomber</td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td>Cleps</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>&nbsp;</td>
+          <td ><img src="/" width="5" height="1"></td>
+        </tr>
+        {foreach from=$defferlist item=fleet}
+        <tr >
+          <td colspan="27"><img src="/" width="1" height="3"></td>
+        </tr>
+
+        <tr >
+          <td ><img src="/" width="5" height="1"></td>
+          <td class="tbl_4" colspan="25"><img src="/" width="1" height="1"></td>
+          <td ><img src="/" width="5" height="1"></td>
+        </tr>
+        <tr align="center">
+          <td ><img src="/" width="5" height="1"></td>
+          <td> {$fleet.gala}:{$fleet.pos} </td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td> {$fleet.nick} </td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td nowrap>Flotte {$fleet.fleetnum}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.eta}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.cancris}</td>
+
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.fregatten}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.zerstoerer}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.kreuzer}</td>
+          <td ><img src="/" width="3" height="1"></td>
+
+          <td>{$fleet.schlachter}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.traeger}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.jaeger}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.bomber}</td>
+
+          <td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet.kleptoren}</td>
+          <td ><img src="/" width="3" height="1"></td>
+          <td align="left"> {if $fleet.canrecall} <a href="takscreen.php?action=defferrecall&id={$fleet.defferid}" title="Deffer recalln"><img src="images/arrows_delete_2.gif" border="0"></a>&nbsp;
+            {/if} 
+						{if $fleet.isextern} 
+							<a href="takscreen.php?action=updatedeffer&id={$fleet.defferid}" title="externen Deffer updaten"><img src="images/arrows_search_2.gif" border="0"></a>
+            {/if} 
+						{if $fleet.canupdatefleet} 
+							<a href="user.php?action=fleet&id={$fleet.uid}" title="Flotte von {$fleet.nick} updaten"><img src="images/arrows_search_2.gif" border="0"></a>
+            {/if} 
+					</td>
+          <td ><img src="/" width="5" height="1"></td>
+
+        </tr>
+        {/foreach}
+      </table>
+      {else}
+      <table cellpadding="0" cellspacing="0" class="tbl_small">
+        <tr>
+          <td ><img src="/" width="5" height="1"></td>
+          <td> <b>keine Verteidiger</b> </td>
+        </tr>
+
+      </table>
+      {/if}
+                        </td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr>
+    <td  class="{$class}" height="15" colspan="2"> <table width="100%" cellpadding="3" cellspacing="3" class="{$class}">
+        <tr>
+          <td><strong>Gesamtübersicht</strong></td>
+        </tr>
+      </table></td>
+
+  </tr>
+  <tr>
+    <td  class="{$class}" colspan="2">
+                        <table cellpadding="0" cellspacing="0" class="{$class}">
+                                <tr>
+                                        <td nowrap>
+                                                <table cellpadding="0" cellspacing="0" class="tbl_small">
+                                                        <tr align="center">
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                                <td>&nbsp;</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Cancris</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Freggs</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Zerris</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+
+                                                                <td>Kreuzer</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Schlachter</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Träger</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Jäger</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Bomber</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>Cleps</td>
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                        </tr>
+                                                        <tr >
+                                                                <td colspan="21"><img src="/" width="1" height="3"></td>
+
+                                                        </tr>
+                                                        <tr >
+                                                                <td  colspan="2"><img src="/" width="5" height="1"></td>
+                                                                <td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                                <td>Angreifer</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.cancris}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.fregatten}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.zerstoerer}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+
+                                                                <td>{$attersum.kreuzer}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.schlachter}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.traeger}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.jaeger}</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.bomber}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$attersum.kleptoren}</td>
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                        </tr>
+                                                        <tr >
+                                                                <td colspan="21"><img src="/" width="1" height="3"></td>
+
+                                                        </tr>
+                                                        <tr >
+                                                                <td colspan="2"><img src="/" width="5" height="1"></td>
+                                                                <td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                                <td>Verteidiger</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.cancris|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.fregatten|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.zerstoerer|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+
+                                                                <td>{$deffersum.kreuzer|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+
+                                                                <td>{$deffersum.schlachter|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.traeger|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.jaeger|default:0}</td>
+
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.bomber|default:0}</td>
+                                                                <td ><img src="/" width="3" height="1"></td>
+                                                                <td>{$deffersum.kleptoren|default:0}</td>
+                                                                <td ><img src="/" width="5" height="1"></td>
+                                                        </tr>
+                                                </table>
+                                        </td>
+
+                                        <td valign="top">
+                                        <form name="form" action="simulator.php" method="post" style="display:inline">
+                                          <input tabindex="28" onclick="copy('{$ircattdata}');" name="ircpopup" type="button"  class="form_small" id="calculate" value="IRC Copy"><br /><img src="images/spacer.gif" height="20"><br /> 
+                                          <input type="hidden" value="{$attersum.jaeger|default:0}"      name="attack0">
+                                          <input type="hidden" value="{$attersum.bomber|default:0}"      name="attack1">
+                                          <input type="hidden" value="{$attersum.fregatten|default:0}"   name="attack2">
+                                          <input type="hidden" value="{$attersum.zerstoerer|default:0}"  name="attack3">
+                                          <input type="hidden" value="{$attersum.kreuzer|default:0}"     name="attack4">
+                                          <input type="hidden" value="{$attersum.schlachter|default:0}"  name="attack5">
+                                          <input type="hidden" value="{$attersum.traeger|default:0}"     name="attack6">
+                                          <input type="hidden" value="{$attersum.kleptoren|default:0}"   name="attack7">
+                                          <input type="hidden" value="{$attersum.cancris|default:0}"     name="attack8">
+                                          <input type="hidden" value="{$deffersum.jaeger|default:0}"     name="deff0">
+                                          <input type="hidden" value="{$deffersum.bomber|default:0}"     name="deff1">
+                                          <input type="hidden" value="{$deffersum.fregatten|default:0}"  name="deff2">
+                                          <input type="hidden" value="{$deffersum.zerstoerer|default:0}" name="deff3">
+                                          <input type="hidden" value="{$deffersum.kreuzer|default:0}"    name="deff4">
+                                          <input type="hidden" value="{$deffersum.schlachter|default:0}" name="deff5">
+                                          <input type="hidden" value="{$deffersum.traeger|default:0}"    name="deff6">
+                                          <input type="hidden" value="{$deffersum.kleptoren|default:0}"  name="deff7">
+                                          <input type="hidden" value="{$deffersum.cancris|default:0}"    name="deff8">
+                                          <input type="hidden" value="{$inc.horus|default:0}"            name="deff13">
+                                          <input type="hidden" value="{$inc.rubium|default:0}"           name="deff9">
+                                          <input type="hidden" value="{$inc.pulsar|default:0}"           name="deff10">
+                                          <input type="hidden" value="{$inc.coon|default:0}"             name="deff11">
+                                          <input type="hidden" value="{$inc.centurion|default:0}"        name="deff12">
+                                          <input type="hidden" value="500"                               name="metall">
+                                          <input type="hidden" value="500"                               name="kristall">
+                                          <input tabindex="28" name="calculate" type="submit"  class="form_small" id="calculate" value="Simulieren">
+                                        </form>
+                                        </td>
+                                </tr>
+
+                        </table>
+                </td>
+  </tr>
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr class="tbl_4">
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+
+  <tr >
+    <td colspan="2"><img src="/" width="1" height="3"></td>
+  </tr>
+  <tr class="tbl_5">
+    <td colspan="2"><br> </td>
+  </tr>
+</table>

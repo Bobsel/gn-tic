@@ -1,0 +1,22 @@
+<table width="100%" cellspacing="0" cellpadding="0" class="content"> 
+	<tr class="firstline">  
+		<td  align="center">
+			<b>{$box.activity.points}</b> Punkte gesammelt
+		</td> 
+	</tr> 
+			{if $box.activity.docheck}
+			<tr class="lastline">
+				<td align="center"  style="padding-top: 8px;padding-bottom: 3px;">
+					<form action="user.php" method="post" enctype="application/x-www-form-urlencoded"  style="display: inline;">
+						<input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+						<input name="action" type="hidden" value="activitycheck">
+						<input  class="button_small" type="submit" name="check" value="Bin Online!">
+					</form>
+				</td>
+			</tr>
+			{else}
+			<tr class="lastline">
+				<td align="center" style="padding-bottom: 3px;"><font size="-5">nächster Checkpoint:<br><b>{$box.activity.nextcheck}</b></font></td>
+			</tr>
+			{/if}
+</table>

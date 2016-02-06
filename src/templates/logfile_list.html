@@ -1,0 +1,93 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Logfile</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> 
+					<a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> <a  title="Neue Suche" href="admin.php?action=logfile&subaction=newsearch&send"><img src="images/buttons_new_search.gif" border="0"></a></td>
+          <td width="50%" align="right">{$forms.logfile.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td width="20%">Zeitpunkt&nbsp;<a href="admin.php?action=logfile&sort=date&order=asc"><img src="images/arrows_orderby_asc{$forms.logfile.date.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=logfile&sort=date&order=desc"><img src="images/arrows_orderby_desc{$forms.logfile.date.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="40%">Aktion </td>
+          <td width="20%">Nickname&nbsp;<a href="admin.php?action=logfile&sort=username&order=asc"><img src="images/arrows_orderby_asc{$forms.logfile.username.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=logfile&sort=username&order=desc"><img src="images/arrows_orderby_desc{$forms.logfile.username.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="20%">Kategorie&nbsp;<a href="admin.php?action=logfile&sort=cat&order=asc"><img src="images/arrows_orderby_asc{$forms.logfile.cat.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=logfile&sort=cat&order=desc"><img src="images/arrows_orderby_desc{$forms.logfile.cat.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$logfile}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr valign="top"> 
+          <td width="20%">{$logfile[list].time}&nbsp;{$logfile[list].date}
+          </td>
+          <td width="40%">{$logfile[list].descr}
+          </td>
+          <td width="20%">{if $logfile[list].nick} {$logfile[list].nick}&nbsp;({$logfile[list].gala}:{$logfile[list].pos}){else}unbekannt{/if}
+          </td>
+          <td width="20%">{$logfile[list].cat}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Einträge gefunden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.logfile.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

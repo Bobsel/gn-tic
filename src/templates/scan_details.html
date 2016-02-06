@@ -1,0 +1,108 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Details von ({$gala}:{$pos})</b><br> <br> </td>
+        </tr>
+        <tr>
+          <td align="left">
+            &nbsp;<a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" border="0"/></a>
+          </td>
+        </tr>
+      </table>
+     </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {if $scan}
+  <tr> 
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#E8E7E7" style="padding: 5px;" > 
+			<table   width="100%" cellpadding="3"  cellspacing="1" bgcolor="#000000" >
+        <tr> 
+          <td   {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="#EFEFEF">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="left">
+                  &nbsp;
+                  &nbsp;&nbsp;
+                  <a name="{$scan.sid}"></a>
+                  <b>{$scan.gala}:{$scan.pos} {$scan.nick}</b>
+                </td>
+                <td align="right">
+                {if $scan.simulator_link}
+                  <a href="{$scan.simulator_link}" title="Im Kampfsimulator berechnen">Simulieren</a>&nbsp;&nbsp;
+                {else}
+                &nbsp;
+                {/if}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+				{if $scan.hasunit || $scan.hassector || $scan.hasgscan}
+        <tr> 
+          {if $scan.hassector}
+					  <td bgcolor="#EFEFEF" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+              {include file="scan_sektor.html"}
+            </td>
+					{/if}
+					{if $scan.hasgscan}
+          <td bgcolor="#EFEFEF" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+              {include file="scan_gscan.html"}
+					</td>
+					{/if}
+					{if $scan.hasunit}
+            <td bgcolor="#EFEFEF" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+              {include file="scan_unit.html"}
+						</td>
+					{/if}
+          </tr>
+					{/if}
+				{if $scan.hasmili} 
+        <tr > 
+          <td  style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="#EFEFEF" valign="top"> 
+           {include file="scan_mili.html"}
+          </td>
+        </tr>
+        {/if} 
+				{if $scan.hasnews} 
+        <tr >
+          <td   style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} valign="top" bgcolor="#EFEFEF"> 
+           {include file="scan_news.html"}
+          </td>
+        </tr>
+				{/if}
+       </table>
+			</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  {else} 
+  <tr> 
+    <td  height="30" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Scans für ({$gala}:{$pos}) gefunden</strong></td>
+        </tr>
+      </table>
+	</td>
+  </tr>
+  {/if} 
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> <div align="right">{$forms.scanlist.pages}</div></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br> </td>
+  </tr>
+</table>

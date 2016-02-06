@@ -1,0 +1,88 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td ><b>Flottenübersicht</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td align="right">{$forms.fleetlist.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td width="33%">Name <a href="admin.php?action=fleets&sort=username&order=asc"><img src="images/arrows_orderby_asc{$forms.fleetlist.username.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=fleets&sort=username&order=desc"><img src="images/arrows_orderby_desc{$forms.fleetlist.username.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="33%">Koords <a href="admin.php?action=fleets&sort=koords&order=asc"><img src="images/arrows_orderby_asc{$forms.fleetlist.koords.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=fleets&sort=koords&order=desc"><img src="images/arrows_orderby_desc{$forms.fleetlist.koords.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="33%">letztes Flottenupdate&nbsp;<a href="admin.php?action=fleets&sort=fleetupdate&order=asc"><img src="images/arrows_orderby_asc{$forms.fleetlist.fleetupdate.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=fleets&sort=fleetupdate&order=desc"><img src="images/arrows_orderby_desc{$forms.fleetlist.fleetupdate.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$fleetlist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td width="30%">{$fleetlist[list].nick}&nbsp;({$fleetlist[list].gala}:{$fleetlist[list].pos})
+          </td>
+          <td width="55%"> {if $fleetlist[list].fleettime}
+            Kleptoren: <span class="tbl_red">{$fleetlist[list].kleptoren}</span> 
+            Cancris: <span class="tbl_red">{$fleetlist[list].cancris}</span> Fregatten: 
+            <span class="tbl_red">{$fleetlist[list].fregatten}</span><br>
+            Zerstörer: <span class="tbl_red">{$fleetlist[list].zerstoerer}</span> 
+            Kreuzer: <span class="tbl_red">{$fleetlist[list].kreuzer}</span> Träger: 
+            <span class="tbl_red">{$fleetlist[list].traeger}</span><br>
+            Jäger: <span class="tbl_red">{$fleetlist[list].jaeger}</span> Bomber: 
+            <span class="tbl_red">{$fleetlist[list].bomber}</span> Schlachter: 
+            <span class="tbl_red">{$fleetlist[list].schlachter}</span><br>
+						letztes Update:&nbsp;<b>{$fleetlist[list].fleetdate}</b> , 
+            <b>{$fleetlist[list].fleettime}</b> Uhr
+						 {else} 
+            <b>keine Flotte angegeben</b> {/if}<br>
+            <a  title="Flotte von {$fleetlist[list].nick} updaten" href="admin.php?action=fleetupdate&id={$fleetlist[list].uid}&page={$page}">Flotte updaten</a> 
+          </td>
+		<td width="15%"> {if $fleetlist[list].fleettime}<input   class="form" title="Kopiert die Flotte in die Zwischenablage" type="button" name="Button" onClick="javascript:window.clipboardData.setData('Text', '{$fleetlist[list].irccopylink}');" value="IRC Copy">{else}&nbsp;{/if}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.fleetlist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,149 @@
+<form name="form" method="post" action="takscreen.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="takparser">
+  <input name="userparse_step2" type="hidden" value="{$userparse}">
+  <input type="hidden" name="uids" value="{$uids}">
+  {foreach from=$userparse_list item=user}
+    <input type="hidden" name="user_{$user.uid}" value="{$user.hidden_string}">
+  {/foreach}
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Taktikscreen parsen</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    {if $errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top" class="red">
+						{foreach from=$errors item=error}
+							<b>{$error}</b><br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+    {if $parse_errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top" class="red">
+						{foreach from=$parse_errors item=error}
+							{$error}<br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+    {if $parse_messages}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top">
+						{foreach from=$parse_messages item=msg}
+							{$msg}<br>
+						{/foreach}
+						</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+ {if $userparse_list}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2" style="padding: 3px"> 
+        <table width="100%" cellspacing="1" cellpadding="3" bgcolor="#000000">
+          <tr> 
+            <td bgcolor="#CCCCCC" valign="top" style="padding: 3px;"> 
+							Koords
+						</td>
+						<td bgcolor="#CCCCCC" width="5%"> 
+							User
+						</td>
+						<td bgcolor="#CCCCCC" width="90%">
+							Status
+						</td>
+					</tr>
+					{foreach from=$userparse_list item=user}
+						<tr>
+							<td bgcolor="#E8E7E7" >
+								{$user.gala}:{$user.pos}
+							</td>
+							<td bgcolor="#E8E7E7" {if $user.fleettype == 1}title="Zweite Flotte offensiv" style="cursor: help;"{elseif $user.fleettype == 2}title="Zweite Flotte deffensiv" style="cursor: help;"{/if}>
+								<span class="{if $user.fleettype == 1}red{elseif $user.fleettype == 2}green{/if}">{$user.nick}</span>
+							</td>
+							<td bgcolor="#E8E7E7" >
+								<table width="100%" cellspacing="0" cellpadding="3">
+									{foreach from=$user.form_data item=data}
+										<tr>
+											<td width="10%">
+												Flotte {$data.fleet}:
+											</td>
+											<td align="left" width="90%">
+											{if $data.do_selectbox}
+                        <select class="form_small" name="select_{$user.uid}_{$data.fleet}">
+                          <option value="0">kein update</option>
+                          {foreach from=$data.select_box item=item}
+                            <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+                          {/foreach}
+                        </select>
+                      {else}
+                      {$data.title}<br>
+                      {/if}
+											
+											</td>
+										</tr>
+									{/foreach}
+								</table>
+							</td>
+						</tr>
+					{/foreach}
+				</table>
+      </td>
+    </tr>
+	{/if}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="takscreen.php?action=takparser" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

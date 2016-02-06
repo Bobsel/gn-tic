@@ -1,0 +1,92 @@
+<form name="form" method="post" action="{$forms.addscan.url}" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="{$forms.addscan.action}">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Scan hinzuf&uuml;gen/updaten</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+  {if $forms.addscan.message}
+	  <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top">{$forms.addscan.message}</td>
+          </tr>
+        </table></td>
+    </tr>
+	{/if}
+  {if $scanlist}
+	  <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="100%" colspan="2"> 
+        <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          {foreach from=$scanlist item=scan}
+            <tr> 
+              <td valign="top">
+                {if $scan.type == "sector"}Sektor
+                {elseif $scan.type == "unit"}Einheiten
+                {elseif $scan.type == "gscan"}Geschütz
+                {elseif $scan.type == "mili"}Militär
+                {elseif $scan.type == "news"}Nachrichten
+                {/if}
+                ({$scan.prec}%) ({$scan.gala}:{$scan.pos}) {$scan.nick}
+              </td>
+            </tr>
+          {/foreach}
+        </table>
+       </td>
+    </tr>
+  {/if}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td valign="top">Scan:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"><textarea name="data" cols="50" rows="7" wrap="OFF" class="form" id="data">{$forms.addscan.fields.data.value}</textarea>
+              {$forms.addscan.fields.nickname.error}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

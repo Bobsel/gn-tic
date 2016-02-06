@@ -1,0 +1,317 @@
+<form name="form" method="post" action="takscreen.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="addatter">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Incoming melden</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    {if $errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+		<tr><td>{foreach from=$errors item=error}{$error}<br>{/foreach}</td></tr>
+		</table>
+    	</td>
+			</tr>
+	{/if}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Opfer Koordinaten:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr><td> <input  title="Galaxie" name="gala" type="text" class="{$items.gala.class}" id="gala" value="{$items.gala.value}" size="4" maxlength="4">
+              : <input  title="Position" name="pos" type="text" class="{$items.pos.class}" id="pos" value="{$items.pos.value}" size="2" maxlength="2"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	<tr> 
+      <td colspan="2" class="tbl_5" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><strong>Angreifer</strong></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Koordinaten</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr>
+            <td> <input  title="Galaxie des Angreifers" name="agala" type="text" class="{$items.agala.class}" id="gala3" value="{$items.agala.value}" size="4" maxlength="4">
+              : 
+              <input  title="Position" name="apos" type="text" class="{$items.apos.class}" id="apos" value="{$items.apos.value}" size="2" maxlength="2"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Ankunftszeit (ETA)</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input   title="verbleibene Flugzeit (ETA)" name="time" type="text" class="{$items.time.class}"  value="{$items.time.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Flotte</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <select name="fleet" class="form">
+             {foreach from=$items.fleet.list item=item}
+                <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+             {/foreach}
+             </select></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	<tr> 
+      <td colspan="2" class="tbl_5" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><strong>Angreiferflotte</strong> (optional)</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Jäger</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="jaeger" type="text" class="{$items.jaeger.class}"  value="{$items.jaeger.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Bomber</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="bomber" type="text" class="{$items.bomber.class}"  value="{$items.bomber.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Fregatten</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="fregatten" type="text" class="{$items.fregatten.class}"  value="{$items.fregatten.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Zerst&ouml;rer</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="zerstoerer" type="text" class="{$items.zerstoerer.class}"  value="{$items.zerstoerer.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Kreuzer</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="kreuzer" type="text" class="{$items.kreuzer.class}"  value="{$items.kreuzer.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Schlachter</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="schlachter" type="text" class="{$items.schlachter.class}"  value="{$items.schlachter.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Tr&auml;ger</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="traeger" type="text" class="{$items.traeger.class}"  value="{$items.traeger.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Kleptoren</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="kleptoren" type="text" class="{$items.kleptoren.class}"  value="{$items.kleptoren.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Cancris</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="cancris" type="text" class="{$items.cancris.class}"  value="{$items.cancris.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Scangenauigkeit (%)</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="prec" type="text" class="{$items.prec.class}"  value="{$items.prec.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>verwendete SVs</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+             <input  name="svs" type="text" class="{$items.svs.class}"  value="{$items.svs.value}" size="20" maxlength="20"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+		<tr>
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input  title="Speichern" type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

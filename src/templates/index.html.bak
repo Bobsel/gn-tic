@@ -1,0 +1,213 @@
+{include file="header.html"}
+{literal}
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+<!--
+
+var nn = !!document.layers;
+var ie = !!document.all;
+/** check if XPCOM is supported */
+var mozilla = !!window.Components;
+
+function popup(text)
+{
+	TopWindow = window.open("popup.php?text="+text,"popup","width=700,height=200,top=200,left=200,toolbar=no,directories=no,status=no,scrollbars=auto,resizable=yes,menubar=no");
+		TopWindow.focus();
+}
+
+function copy(text) 
+{ 
+    if (ie)  
+    { 
+        // IE 
+        window.clipboardData.setData('Text', text); 
+    } 
+    else 
+    { 
+        // Moz 
+        var copytext = document.getElementById("copytext"); 
+        copytext.value = text; 
+        copytext.select(); 
+        var event = document.createEvent("KeyEvents"); 
+        event.initKeyEvent("keypress", true, true, window, true, false, false, false, 45, 0, copytext); 
+        copytext.dispatchEvent(event); 
+    } 
+}
+
+
+function switch_scans(idmili,idnews) {
+	if(ie) {
+		if(idmili != '') {
+			if (document.getElementById('militd'+idmili).style.display != 'inline') {
+				document.getElementById('militd'+idmili).style.display = 'inline';
+				document.getElementById('hideimg'+idmili).src = 'images/minus.gif';
+			} else {
+				document.getElementById('militd'+idmili).style.display = 'none';
+				document.getElementById('hideimg'+idmili).src = 'images/plus.gif';
+			}
+		}
+		if(idnews != '') {
+			if (document.getElementById('newstd'+idnews).style.display != 'inline') {
+				document.getElementById('newstd'+idnews).style.display = 'inline';
+				document.getElementById('hideimg'+idnews).src = 'images/minus.gif';
+			} else {
+				document.getElementById('newstd'+idnews).style.display = 'none';
+				document.getElementById('hideimg'+idnews).src = 'images/plus.gif';
+			}
+		}
+	} else {
+		if(idmili != '') {
+			if (document.getElementById('militd'+idmili).style.display != 'table-row') {
+				document.getElementById('militd'+idmili).style.display = 'table-row';
+				document.getElementById('hideimg'+idmili).src = 'images/minus.gif';
+			} else {
+				document.getElementById('militd'+idmili).style.display = 'none';
+				document.getElementById('hideimg'+idmili).src = 'images/plus.gif';
+			}
+		}
+		if(idnews != '') {
+			if (document.getElementById('newstd'+idnews).style.display != 'table-row') {
+				document.getElementById('newstd'+idnews).style.display = 'table-row';
+				document.getElementById('hideimg'+idnews).src = 'images/minus.gif';
+			} else {
+				document.getElementById('newstd'+idnews).style.display = 'none';
+				document.getElementById('hideimg'+idnews).src = 'images/plus.gif';
+			}
+		}
+	}
+}
+
+        var menuitems 
+
+        load_settings()
+
+        function find_value(array,value) {
+          for(var i = 0; i < array.length; i++) {
+            if(array[i] == value) {
+              return i;
+              break;
+            }
+          }
+        }
+        
+        function write_settings() {
+          setCookie('menuitems',menuitems.join(","))
+        }
+
+        function load_settings() {
+          var cookievalue = getCookie('menuitems')
+          if(cookievalue != null && String(cookievalue).length > 0) {
+            menuitems = cookievalue.split(",")
+          } else {
+            menuitems = new Array()
+          }
+        }
+
+        function init_settings() {
+           for(var i = 0; i < menuitems.length; i++) {
+             menuitem(menuitems[i],'init')
+           }
+        }
+
+        function menuitem(id,option,url) {
+          var item = document.getElementById('menu'+id)
+          var item_img = document.getElementById('menuimg'+id)
+          var action = ''
+          if(ie) {
+            if (item.style.display != 'inline') {
+                item.style.display = 'inline';
+                action = 'open'
+            } else {
+                action = 'close'
+            }
+          } else {
+            if (item.style.display != 'table-row') {
+                item.style.display = 'table-row';
+                action = 'open'
+            } else {
+                action = 'close'
+            }
+          }
+          if (action == 'open') {
+            item_img.src = 'images/arrows_menurow_close.gif';
+          } else {
+            if(option != 'open') {
+              item.style.display = 'none';
+              item_img.src = 'images/arrows_menurow.gif';
+            }
+          }
+          if(option != 'init') {
+            var i = find_value(menuitems,id)
+            if (action == 'open') {
+              if(i == null) {
+                menuitems.push(id)
+                write_settings()
+              }
+            } else {
+              if(option != 'open') {
+                if(i != null) {
+                  menuitems.splice(i,1)
+                  write_settings()
+                }
+              }
+            }
+          }
+          if(url != null) {
+            window.open(url,'_self')
+          }
+        }
+
+        // Sets cookie values. Expiration date is optional
+        //
+        function setCookie(name, value, expire) {
+             document.cookie = name + "=" + escape(value)
+             + ((expire == null) ? "" : ("; expires=" + expire.toGMTString()))
+        }
+
+        function getCookie(Name) {
+           var search = Name + "="
+           if (document.cookie.length > 0) { // if there are any cookies
+              offset = document.cookie.indexOf(search) 
+              if (offset != -1) { // if cookie exists 
+                 offset += search.length 
+                 // set index of beginning of value
+                 end = document.cookie.indexOf(";", offset) 
+                 // set index of end of cookie value
+                 if (end == -1) 
+                    end = document.cookie.length
+                 return unescape(document.cookie.substring(offset, end))
+              } 
+           }
+        }
+
+-->
+</SCRIPT>
+<textarea id="copytext" style="visibility:hidden; position:absolute; top:1px; left:1px; z-index:-1;" rows="1" cols="1"></textarea>
+{/literal}
+<table height="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+  <tr> 
+    <td align="center" valign="top"> {include file="box_case.html" box_content 
+      = "`$box.menu.template`" box_width="120" box_title="`$box.menu.title`" } 
+    </td>
+    <td align="center" valign="top">
+		{include file="box_case.html" box_content 
+      = "`$box.mainbox.template`" box_width="700" box_title="`$box.mainbox.title`"}
+		</td>
+    <td align="center" valign="top">
+		<p>
+				{include file="box_case.html" box_content = "`$box.userbox.template`" box_width="135" box_title="`$box.userbox.title`" }
+				{if $box.targets.template}
+					{include file="box_case.html" box_content = "`$box.targets.template`" box_width="135" box_title="`$box.targets.title`" }
+				{/if}
+				{if $box.fleets.template}
+					{include file="box_case.html" box_content = "`$box.fleets.template`" box_width="135" box_title="`$box.fleets.title`" }
+				{/if}
+				{include file="box_case.html" box_content = "`$box.takscreen.template`" box_width="135" box_title="`$box.takscreen.title`" } 
+				{include file="box_case.html" box_content = "`$box.useronline.template`" box_width="135" box_title="`$box.useronline.title`" } 
+			</p>
+      </td>
+  </tr>
+  <tr align="center" valign="bottom"> 
+    <td colspan="3" class="tbl_small2">{$version}</td>
+  </tr>
+</table>
+{include file="footer.html"}

@@ -1,0 +1,45 @@
+<form name="form" method="post" action="{$forms.information.url}" style="display:inline">
+  <input name="send" type="hidden" id="send" value="1">
+  <input name="backlink" type="hidden" id="backlink" value="{$forms.information.backlink}">
+  <input name="backlink" type="hidden" id="backlink" value="{$backlink_form}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  {if $forms.information.action}<input name="action" type="hidden" id="action" value="{$forms.information.action}">{/if}
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>{$forms.information.title}</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_{$forms.information.style}">
+          <tr> 
+            <td >{$forms.information.message}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"><table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <input type="image" border="0" name="yes" src="images/buttons_yes.gif" > &nbsp;<a href="{$backlink}"><img border="0" src="images/buttons_no.gif" ></a>
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td> <p><br>
+        </p></td>
+    </tr>
+  </table>
+ 
+</form>

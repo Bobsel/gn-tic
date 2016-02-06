@@ -1,0 +1,21 @@
+<table cellspacing="0" cellpadding="3" width="100%" class="content">
+  {foreach name=box_useronline_list from=$box.useronline.list item=user}
+    {if $smarty.foreach.box_useronline_list.first} 
+      <tr valign="top" class="firstline">
+        <td width="16"><img src="images/arrows_data.gif" width="12" height="13" border="0"></td>
+        <td><b>{$smarty.foreach.box_useronline_list.total} User online</b></td>
+      </tr>
+    {/if}
+    <tr valign="top" class="line">
+      <td width="16"><img width="12" height="13" src="images/arrows_user.gif" border="0"></td>
+      <td>
+        <table cellspacing="0" cellpadding="0" width="100%">
+          <tr valign="top">
+            <td align="left"><a title="{$user.nick} ({$user.gala}:{$user.pos})" href="user.php?action=showdetails&id={$user.uid}" class="menu">{$user.name}</a></td>
+            <td align="right">({$user.gala}:{$user.pos})</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  {/foreach}
+</table>

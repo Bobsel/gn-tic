@@ -1,0 +1,226 @@
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td >
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            
+          <td><b> Flotte von {$user.nick} ({$user.gala}:{$user.pos})</b><br>
+            <br>
+            <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" border="0"></a>            </td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td ><img src="/" width="1" height="1"></td>
+    </tr>
+  <tr>
+    <td class="tbl_6" style="padding: 3px;">
+      <a  class="admin" href="user.php?action=fleetparser&id={$id}" title="Deff/Flotte/Status per Parser updaten">Deff/Flotte
+      parsen</a> &#8226;
+      <a  class="admin" title="Manuelles Flottenupdate"href="user.php?action=fleetmanuell&id={$id}">Flotte
+      eingeben</a> &#8226; 
+      <a  class="admin" href="user.php?action=orbitmanuell&id={$id}" title="Orbitalverteidigungg manuell eingeben">Verteidigung
+    eingeben</a> </td>
+  </tr>
+  <tr>
+    <td  class="tbl_6" height="15" >
+			<table width="100%" cellpadding="3" cellspacing="3" class="tbl_6">
+        <tr>
+          <td> <strong>Flotte </strong></td>
+          <td><div align="right">letztes Update: {if $fleettime}{$fleetdate}, 
+              {$fleettime} Uhr{else}unbekannt{/if}</div></td>
+        </tr>
+      </table>
+		</td>
+  </tr>
+  <tr> 
+    <td  class="tbl_6" > 
+			<table class="tbl_6" width="100%">
+				<tr>
+					<td width="80%">
+						<table cellpadding="0" cellspacing="0" class="tbl_small">
+							<tr align="center"> 
+								<td ><img src="/" width="5" height="1"></td>
+								<td>Flotte</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Cancris</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Freggs</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Zerris</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Kreuzer</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Schlachter</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Träger</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Jäger</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Bomber</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Cleps</td>
+								<td ><img src="/" width="5" height="1"></td>
+							</tr>
+							{foreach from=$fleets item=fleet}
+								<tr> 
+									<td ><img src="/" width="5" height="1"></td>
+									<td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+									<td ><img src="/" width="5" height="1"></td>
+								</tr>
+								<tr align="center" {if $fleet.class} class="{$fleet.class}"{/if}> 
+									<td ><img src="/" width="5" height="15"></td>
+									<td>{$fleet.dir}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.cancris}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.fregatten}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.zerstoerer}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.kreuzer}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.schlachter}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.traeger}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.jaeger}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.bomber}</td>
+									<td ><img src="/" width="3" height="1"></td>
+									<td>{$fleet.kleptoren}</td>
+									<td ><img src="/" width="5" height="1"></td>
+								</tr>
+							{/foreach}
+						</table>
+					</td>
+				</tr>
+			</table>
+
+		</td>
+  </tr>
+	<tr class="tbl_4"> 
+      <td ><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td  class="tbl_6" height="15" >
+			<table width="100%" cellpadding="3" cellspacing="3" class="tbl_6">
+        <tr> 
+          <td><strong>Orbitalverteidigung</strong> </td>
+          <td><div align="right">letztes Update: {if $defftime}{$deffdate}, {$defftime} 
+              Uhr{else}unbekannt{/if}</div></td>
+        </tr>
+      </table>
+		</td>
+  </tr>
+  <tr> 
+    <td  class="tbl_6" >
+			<table class="tbl_6" width="100%">
+				<tr>
+					<td width="80%">
+						<table cellpadding="0" cellspacing="0" class="tbl_6">
+							<tr align="center"> 
+								<td ><img src="/" width="5" height="15"></td>
+								<td>Horus</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Rubium</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Pulsar</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Coon</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>Centurion</td>
+								<td ><img src="/" width="5" height="1"></td>
+							</tr>
+							<tr> 
+								<td ><img src="/" width="5" height="1"></td>
+								<td class="tbl_4" colspan="11"><img src="/" width="1" height="1"></td>
+								<td ><img src="/" width="5" height="1"></td>
+							</tr>
+							<tr align="center"> 
+								<td ><img src="/" width="5" height="15"></td>
+								<td>{$deff.horus}</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>{$deff.rubium}</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>{$deff.pulsar}</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>{$deff.coon}</td>
+								<td ><img src="/" width="3" height="1"></td>
+								<td>{$deff.centurion}</td>
+								<td ><img src="/" width="5" height="1"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table> 
+		</td>
+	</tr>
+	<tr class="tbl_4"> 
+		<td ><img src="/" width="1" height="1"></td>
+	</tr>
+  <tr>
+    <td  class="tbl_6" height="15" >
+			<table width="100%" cellpadding="3" cellspacing="3" class="tbl_6">
+				<tr> 
+					<td><strong>Flottenstatus</strong></td>
+				</tr>
+			</table>
+		</td>
+  </tr>
+	<tr>
+		<td class="tbl_6">
+			<table width="100%" class="tbl_6">
+				<tr>
+					<td width="80%">
+						<table class="tbl_6" cellpadding="3" cellspacing="3" >
+							<tr>
+								<td nowrap valign="top" width="200">
+									<b>Flotte 1:</b><br>
+									<span class="{$fleets[1].class}">{$fleets[1].dir}</span> <br>
+									{if $fleets[1].eta}{$fleets[1].eta}<br>
+  									{if $fleets[1].status == 1 && !$fleets[1].return_flight}
+	  									Angriffszeit: {$fleets[1].orbit}<br>
+		  							{/if}
+			  						{if $fleets[1].status == 2 && !$fleets[1].return_flight}
+				  						Deffzeit: {$fleets[1].orbit}<br>
+					  				{/if}
+                  {/if}
+								</td>
+								<td  valign="top" >
+									<b>Flotte 2:</b><br>
+									<span class="{$fleets[2].class}">{$fleets[2].dir}</span> <br>
+									{if $fleets[2].eta}{$fleets[2].eta}<br>
+  									{if $fleets[2].status == 1 && !$fleets[2].return_flight}
+	  									Angriffszeit: {$fleets[2].orbit}<br>
+		  							{/if}
+			  						{if $fleets[2].status == 2 && !$fleets[2].return_flight}
+				  						Deffzeit: {$fleets[2].orbit}<br>
+					  				{/if}
+                  {/if}
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="20%">
+						<img src="images/arrows_data.gif"> <a href="user.php?action=fleetstatus&fleet=1&id={$id}" title="Status Flotte 1 ändern">Flotte 1</a><br>
+            <img src="images/arrows_data.gif"> <a href="user.php?action=fleetstatus&fleet=2&id={$id}" title="Status Flotte 2 ändern">Flotte 2</a> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		</td>
+	</tr>
+	<tr class="tbl_4"> 
+      <td ><img src="/" width="1" height="1"></td>
+  </tr>
+	<tr class="tbl_5"> 
+		<td > <p><br>
+			</p>
+		</td>
+	</tr>
+</table> 

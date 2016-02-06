@@ -1,0 +1,173 @@
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td > 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td style="padding: 5px"><b>{$attplan.title}</b><br><br>{if $attplan.descr}{$attplan.descr}<br><br>{/if}
+          {if $attplan.isadmin}<a  class="admin" href="attplan.php?action=edit&id={$attplan.attid}">Plan bearbeiten</a>&nbsp;&#8226;&nbsp;<a  class="admin" href="attplan.php?action=delete&id={$attplan.attid}">Plan löschen</a>&nbsp;&#8226;&nbsp;<a  class="admin" href="attplan.php?action=targets&id={$attplan.attid}">Ziele bearbeiten</a>{/if}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td ><img src="/" width="1" height="1"></td>
+  </tr>
+	{if $type eq "ziele"}
+	<tr>
+		<td align="left">
+			<table cellpadding="5" cellspacing="0" width="100%">
+			<tr>
+				<td align="left">
+					<a  class="noline" href="attplan.php?action=view&id={$attplan.attid}">Ziele</a>
+				</td>
+				<td align="right">
+					{if $hastargets}
+					<form action="" method="post" style="display:inline;">
+						<input type="hidden" name="ssid" value="{$session.id}">
+						<input type="hidden" name="action" value="view">
+						<input type="hidden" name="subaction" value="changegala">
+						<input type="hidden" name="id" value="{$attplan.attid}">
+						<input type="hidden" name="send" value="1">
+						Galaxien: 
+						<select name="gala" class="form" onChange="submit()">
+							{foreach from=$items.gala.list item=item}
+								<option value="{$item.value}" {$item.selected}>{$item.title}</option>
+							{/foreach}
+						</select>
+				 </form>
+				 {else}
+				 	&nbsp;
+					{/if}
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	{if $hastargets}
+		<tr class="tbl_4"> 
+			<td ><img src="/" width="1" height="1"></td>
+		</tr>
+		<tr>
+			<td bgcolor="#E8E7E7"><img src="/" width="1" height="5"></td>
+		</tr>
+		{if $scanlist}
+			{foreach item=scan from=$scanlist} 
+			<tr>
+				<td bgcolor="#E8E7E7" style="padding: 5px;" >
+					<table   width="100%" cellpadding="3"  cellspacing="1" class="contentbox"  bgcolor="#EFEFEF">
+						<tr>
+							<td   {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="#CCCCCC">
+								<table width="100%" cellspacing="0" cellpadding="0" >
+									<tr {if $scan.reserved == 1}bgcolor="red"{elseif $scan.reserved == 2}bgcolor="lightgreen"{/if}>
+										<td align="left" width="40%">
+											&nbsp;
+											{if $scan.hasnews || $scan.hasmili}
+												<a  href="javascript:switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')" title="Weitere Scans"><img src="images/plus.gif" border="0" id="hideimg{$scan.sid}"></a>
+											{else}
+												&nbsp;&nbsp;
+											{/if}
+											&nbsp;&nbsp;
+											<a name="{$scan.sid}"></a>
+											<b>{$scan.gala}:{$scan.pos} {$scan.nick}</b>
+										</td>
+										<td align="right" width="50%">
+											{if $scan.canreserve}
+												{if !$scan.closed}
+													<a  title="Ziel reservieren" href="attplan.php?action=reserve&id={$scan.sid}{$scan.backlink}">Reservieren</a>
+												{/if}
+										  {else}
+												<span class="{$scan.reserveclass}"><b>von {$scan.atter_nick} ({$scan.atter_gala}:{$scan.atter_pos}) reserviert</b></span>
+												{if $scan.candelete && !$scan.closed}
+													&nbsp;&nbsp;&nbsp;<a  title="Atter löschen" href="attplan.php?action=unreserve&id={$scan.sid}{$scan.backlink}">Löschen</a>
+											  {/if}
+											{/if}
+											{if $scan.closed}
+											&nbsp;&nbsp;&nbsp;<span  style="cursor:help; " class="red" title="für Änderungen gesperrt">Geschlossen</span>
+											{/if}
+										</td>
+										<td align="right" width="10%">
+											{if $scan.simulator_link}
+												<a href="{$scan.simulator_link}{$scan.backlink}" title="Im Kampfsimulator berechnen">Simulieren</a>&nbsp;&nbsp;
+											{else}
+												&nbsp;
+											{/if}
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						{if $scan.hasunit || $scan.hassector || $scan.hasgscan}
+							<tr >
+								{if $scan.hassector}
+									<td  width="{$scan.width}%" valign="top" style="padding: 5px;">
+										{include file="scan_sektor.html"}
+									</td>
+								{/if}
+								{if $scan.hasgscan}
+									<td  width="{$scan.width}%" valign="top" style="padding: 5px;">
+										{include file="scan_gscan.html"}
+									</td>
+								{/if}
+								{if $scan.hasunit}
+									<td  width="{$scan.width}%" valign="top" style="padding: 5px;">
+									{include file="scan_unit.html"}
+									</td>
+							 {/if}
+							</tr>
+						{/if}
+						{if $scan.hasmili}
+						<tr id="militd{$scan.sid}" style="display: none;">
+							<td  style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if}  valign="top">
+								{include file="scan_mili.html"}
+							</td>
+						</tr>
+						{/if}
+						{if $scan.hasnews}
+						<tr style="display: none;" id="newstd{$scan.sid}">
+							<td   style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} valign="top" >
+							 {include file="scan_news.html"}
+							</td>
+						</tr>
+						{/if}
+				 </table>
+				 {if $scan.expand}
+					<SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+					<!--
+						switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')
+					-->
+					</SCRIPT>
+				 {/if}
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#E8E7E7"><img src="/" width="1" height="5"></td>
+		</tr>
+		{/foreach}
+	{else}
+		<tr>
+			<td align="center" style="padding: 5px;" id="hline">
+				<b>Keine Scans für die Ziele in Galaxie {$selectedgala} gefunden</b>
+			</td>
+		</tr>
+	{/if}
+{else}
+	<tr>
+		<td align="center" style="padding: 5px;" id="hline">
+			<b>Keine Ziele vorhanden</b>
+		</td>
+	</tr>
+{/if}
+<tr class="tbl_4"> 
+	<td ><img src="/" width="1" height="1"></td>
+</tr>
+{/if}
+	<tr>
+		<td>
+		</td>
+	</tr>
+  <tr class="tbl_5"> 
+    <td ><br>
+    </td>
+  </tr>
+</table>

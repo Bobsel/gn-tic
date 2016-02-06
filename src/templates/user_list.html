@@ -1,0 +1,96 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Benutzerliste</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> <a  title="Neue Suche" href="admin.php?action=user&subaction=newsearch"><img src="images/buttons_new_search.gif" border="0"></a></td>
+          <td width="50%" align="right">{$forms.userlist.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+					<td width="20%" align="center">&nbsp;
+          </td>
+          <td width="20%" align="center">Name <a href="admin.php?action=user&sort=username&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.username.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=user&sort=username&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.username.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="20%" align="center">Koords <a href="admin.php?action=user&sort=koords&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.koords.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=user&sort=koords&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.koords.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="20%" align="center">Gruppe <a href="admin.php?action=user&sort=group&order=asc"><img src="images/arrows_orderby_asc{$forms.userlist.group.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=user&sort=group&order=desc"><img src="images/arrows_orderby_desc{$forms.userlist.group.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="20%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$userlist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+					<td width="20%" align="center">[{$userlist[list].tag}]
+          </td>
+					<td width="20%" align="center" nowrap>{$userlist[list].nick} 
+          </td>
+          <td width="20%" align="center">{$userlist[list].gala}:{$userlist[list].pos} 
+          </td>
+          <td width="20%" align="center">{$userlist[list].groupname|default:"keine"} 
+          </td>
+          <td width="20%" align="center"><a href="admin.php?action=userdetails&id={$userlist[list].uid}"><img src="images/buttons_details.gif" width="61" height="17" border="0"></a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Benutzer gefunden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.userlist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

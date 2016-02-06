@@ -1,0 +1,180 @@
+{strip}
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0" class="content">
+  <tr> 
+    <td class="header"> 
+      <table width="100%">
+        <tr> 
+          <td ><b>Taktikschirm</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td align="right">{$pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="headline"> 
+    <td height="30" id="hline"> 
+		<form   style="display:inline" action="takscreen.php" method="post" name="form1">
+		<input name="send" type="hidden" value="1">
+			<table width="100%">
+        <tr align="center"> 
+          <td width="10%">Koords <a href="takscreen.php?sort=koords&order=asc"><img src="images/arrows_orderby_asc{$sort.koords.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="takscreen.php?sort=koords&order=desc"><img src="images/arrows_orderby_desc{$sort.koords.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="10%">Zeiten <a href="takscreen.php?sort=time&order=asc"><img src="images/arrows_orderby_asc{$sort.time.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="takscreen.php?sort=time&order=desc"><img src="images/arrows_orderby_desc{$sort.time.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="40%" align="left">
+            <input name="safe" type="checkbox" onClick="submit()" value="1" {$items.safe.checked}>Safe ausblenden 
+            <input name="undertime" type="checkbox"  onClick="submit()" value="1" {$items.undertime.checked}>Undertime ausblenden
+          </td>
+          <td width="40%" align="right">
+            <select   onChange="submit()" name="ally">
+						{foreach from=$items.ally.list item=item}
+              <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+						{/foreach}
+            </select>
+            <select   onChange="submit()" name="gala">
+						{foreach from=$galalist item=item}
+              <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+						{/foreach}
+            </select>
+          </td>
+        </tr>
+      </table>
+		</form>
+    </td>
+  </tr>
+  {cycle print=false values="color1,color2"}
+  {foreach from=$list item=inc}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" id="hline"> 
+      <table width="100%" cellpadding="3" cellspacing="0" >
+				<tr> 
+          <td width="8%"><a name="{$inc.uid}">&nbsp;{$inc.gala}:{$inc.pos}&nbsp;</td>
+          <td width="50%">&nbsp;<a href="takscreen.php?action=details&id={$inc.uid}&backlink={$inc.backlink}" title="Details"><strong>[{$inc.tag}] {$inc.nick}</strong></a>&nbsp;{if 
+            $inc.safe}<span class="tbl_red"><strong>[safe]</strong></span>{/if}</td>
+					<td align="right" >
+						<a href="takscreen.php?action=adddeffer&id={$inc.uid}&backlink={$inc.backlink}" title="Mich als Deffer eintragen">Hier deffen</a> 
+						{if $inc.safe}
+							&bull; <a href="takscreen.php?action=unsafe&id={$inc.uid}&backlink={$inc.backlink}"  title="User ist nicht ausreichend gedefft" >Unsafe</a>&nbsp;
+						{else}
+							&bull; <a href="takscreen.php?action=safe&id={$inc.uid}&backlink={$inc.backlink}"  title="User ist ausreichend gedefft" >Safe</a>&nbsp;
+						{/if}
+						&bull; <a href="takscreen.php?action=recallall&id={$inc.uid}&backlink={$inc.backlink}"  title="alle Atter recallen" >Atter recallen</a>
+					</td>
+        </tr>
+				<tr>
+					<td  colspan="3" id="hline">
+						<table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+								<td align="center"> <span class="red">Angreifende Flotten:</span></td>
+								<td  align="center"><span class="green">Verteidigende Flotten:</span></td>
+							</tr>
+							<tr>
+								<td width="55%" align="right" valign="top" style="padding-top:3px;padding-bottom:10px;"> 
+                  <table cellpadding="0"  cellspacing="0"  align="center">
+                    {foreach from=$inc.atterlist item=atter} 
+                    <tr>
+											<td align="right" style="padding: 0px 2px 0px 2px">
+												<a href="scans.php?gala={$atter.gala}&pos={$atter.pos}&backlink={$inc.backlink}" title="Scans von ({$atter.gala}:{$atter.pos}) {$atter.nick} anzeigen">{$atter.nick} ({$atter.gala}:{$atter.pos})</a>
+											</td>
+											<td align="right" style="padding: 0px 2px 0px 2px">
+												{if $atter.fleetnum}Flotte {$atter.fleetnum}{else}&nbsp;{/if}
+											</td>
+											<td align="left"  style="padding: 0px 2px 0px 2px">
+												{if $atter.orbit}
+													<span  style="cursor: help;" title="noch {$atter.orbittime} im Orbit">(Im Orbit: {$atter.orbittime})</span>
+												{else}
+                          {if $atter.arrival}
+                            <span  style="cursor: help;" title="noch {$atter.eta} bis zur Ankunft">(ETA: {$atter.eta})</span>
+                          {else}
+                            ETA: n/a
+                          {/if}
+												{/if}
+											</td>
+											<td align="right" style="padding: 0px 2px 0px 2px">
+												{if $atter.canrecall}
+													<a href="takscreen.php?action=recall&id={$atter.fsid}&backlink={$inc.backlink}" title="Atter {$atter.gala}:{$atter.pos} löschen"><img src="images/arrows_delete_2.gif" border="0"></a>
+												{/if}
+											</td>
+											<td align="right"  style="padding: 0px 2px 0px 2px">
+												<a  title="Flottendaten" href="takscreen.php?action=fleetstatus&id={$atter.fsid}&page=2&backlink={$inc.backlink}"><img src="images/arrows_search_2.gif" border="0"></a>
+											</td>
+											<td align="left"  style="padding: 0px 2px 0px 2px">
+												{if $atter.prec < 100} 
+													<a  target="_blank" href="http://game.galaxynet.4players.de/game/waves.php?action=Scannen&c1={$atter.gala}&c2={$atter.pos}&typ=mili"><img   title="Scan hat {$atter.prec|default:0} %, klick für neuen Scan" border="0" src="images/scan_undone.gif"></a>
+												{else} 
+													<img  title="{$atter.prec}%{if $atter.svs > 0} bei {$atter.svs} SVs{/if}"src="images/scan_done.gif"> 
+												{/if}
+											</td>
+										</tr>
+										{/foreach}
+									</table>
+								</td>
+								<td width="45%" align="right" valign="top" style="padding-top:3px;padding-bottom:10px;"> 
+                  <table align="center" cellpadding="0" cellspacing="0">
+                    {foreach from=$inc.defferlist item=deffer} 
+                    	<tr title="{if $deffer.tag}[{$deffer.tag}] {/if}{$deffer.nick} ({$deffer.gala}:{$deffer.pos}) Flotte {if $deffer.fleetnum}{$deffer.fleetnum}{else}n/a{/if}">
+												<td align="right" style="padding: 0px 2px 0px 2px">
+													{if $deffer.tag}[{$deffer.tag}] {/if}{$deffer.nick} ({$deffer.gala}:{$deffer.pos}){if $deffer.fleetnum} Flotte {$deffer.fleetnum}{/if}
+												</td>
+												<td align="left" nowrap style="padding: 0px 2px 0px 2px">
+													{if $deffer.orbit}
+														<span  style="cursor: help;" title="noch {$deffer.orbittime} im Orbit">(Im Orbit: {$deffer.orbittime})</span>
+													{else}
+                            {if $deffer.arrival}
+                              <span  style="cursor: help;" title="noch {$deffer.eta} bis zur Ankunft">(ETA: {$deffer.eta})</span>
+                            {else}
+                              ETA: n/a
+                            {/if}
+													{/if}
+												</td>
+												<td style="padding-left:2px;padding-right: 2px;">
+													<a href="takscreen.php?action=recall&id={$deffer.fsid}&backlink={$inc.backlink}" title="Deffer {$deffer.gala}:{$deffer.pos} recalln"><img src="images/arrows_delete_2.gif" border="0"></a>
+												</td>
+												<td style="padding-left:2px;padding-right: 2px;">
+													{if $deffer.canedit}<a href="takscreen.php?action=fleetstatus&id={$deffer.fsid}&page=2&backlink={$inc.backlink}" title="Flottendaten"><img src="images/arrows_search_2.gif" border="0"></a>{else}&nbsp;{/if}
+												</td>
+												<td>
+												{if !$deffer.uid}
+  												{if $deffer.prec < 100} 
+  													<a  target="_blank" href="http://game.galaxynet.4players.de/game/waves.php?action=Scannen&c1={$deffer.gala}&c2={$deffer.pos}&typ=mili"><img   title="Scan hat {$deffer.prec|default:0} %, klick für neuen Scan" border="0" src="images/scan_undone.gif"></a>
+  												{else}
+  												  <img  title="{$deffer.prec}%{if $deffer.svs > 0} bei {$deffer.svs} SVs{/if}"src="images/scan_done.gif"> 
+  												{/if} 
+  											{else}
+  												  &nbsp;
+  											{/if}
+												</td>
+											</tr>
+										{foreachelse}
+											<tr>
+												<td align="center">
+													&nbsp;<b>keine Verteidiger</b>&nbsp;
+												</td>
+											</tr>
+										{/foreach}
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+      </table>
+    </td>
+  </tr>
+  {foreachelse}
+  <tr> 
+    <td class="color1" align="center" id="hline" style="padding: 5px;"><strong>Keine Incomings</strong></td>
+  </tr>
+  {/foreach}
+  <tr >
+    <td class="footer" align="right">
+            {$pages}
+    </td>
+  </tr>
+</table>
+{/strip}

@@ -1,0 +1,223 @@
+<form name="form" method="post" action="admin.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="id" type="hidden" value="{$id}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="edituser">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Benutzerdaten von {$forms.useredit.username} &auml;ndern</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    {if $errors}
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" colspan="2"> 
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+					<tr>
+						<td>{foreach from=$errors item=error}{$error}<br>{/foreach}</td>
+					</tr>
+				</table>
+    	</td>
+		</tr>
+	{/if}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>GN Nickname</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input  title="exacter GN Nickname" name="nick" type="text" class="form{$items.nick.bgrd}" id="nick" value="{$items.nick.value}" size="20" maxlength="40">
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Login</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input  title="Taktikcenter Login" name="login" type="text" class="form{$items.login.bgrd}" id="nick" value="{$items.login.value}" size="20" maxlength="250">
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Allianz</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+							{if $rank < 2}
+								<select class="tbl_1" name="ally" id="ally"  onChange="submit()">
+									{foreach from=$allylist item=item}
+										<option value="{$item.aid}" {$item.selected}>{$item.tag}</option>				
+									{/foreach}
+								</select>
+							{else}
+								{$ally}
+							{/if}
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Galaxie</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+							{if $rank < 3}
+								<select class="tbl_1" name="gala" id="gala">
+									{foreach from=$galalist item=item}
+										<option value="{$item.gala}" {$item.selected}>{$item.gala}</option>				
+									{/foreach}
+								</select>
+							{else}
+								{$gala}
+							{/if}
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Position</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input name="pos" type="text" class="form{$items.pos.bgrd}" id="gala" value="{$items.pos.value}" size="4" maxlength="4">
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Gruppe</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+						{if $changegroup}
+							<select class="tbl_1" name="group" id="group">
+              	<option value="0">keine</option>
+              	{foreach from=$grouplist item=item}
+									<option value="{$item.gid}" {$item.selected}>{$item.name}</option>				
+								{/foreach}
+						  </select>
+						{else}
+							{$group|default:"keine"}
+						{/if}
+              </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>IRC Q-Auth</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> 
+	        <input  class="form{$items.ircauth.bgrd}"  value="{$items.ircauth.value}" name="ircauth" type="text" id="ircauth" size="20" maxlength="50">
+						
+              </td>
+          </tr>
+        </table>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Neues Passwort setzen (optional)</b></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Passwort:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input name="password" type="text" class="form{$items.password.bgrd}" id="password" value="{$items.password.value}" size="20" maxlength="250">
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

@@ -1,0 +1,202 @@
+{strip}
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0" class="content">
+  <tr> 
+    <td class="header"> 
+      <table width="100%">
+        <tr> 
+          <td ><b>Flottendaten von {$status.gala}:{$status.pos} Flotte {$status.fleetnum|default:"unbekannt"}</b></td>
+        </tr>
+        <tr> 
+          <td align="right">{$pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="headline" height="30" id="hline"> 
+      <a href="{$backlink}">Zurück</a> &bull; <a href="takscreen.php?action=fleetstatus&id={$status.fsid}">Taktik</a> &bull; <a href="takscreen.php?action=fleetstatus&id={$status.fsid}&page=2">Scans</a> &bull; <a href="takscreen.php?action=fleetstatus&id={$status.fsid}&page=3">Manuell</a> &bull; <a href="takscreen.php?action=fleetstatus&id={$status.fsid}&page=4">Parser</a>
+    </td>
+  </tr>
+  {if $message}
+  <tr>
+    <td id="hline" style="padding: 5px;">
+      <span class="green">{$message}</span>
+    </td>
+  </tr>
+  {/if}
+  {if $errors}
+  <tr>
+    <td id="hline" style="padding: 5px;">
+      {foreach from=$errors item=error}
+        <span class="red">{$error}</span>
+      {/foreach}
+    </td>
+  </tr>
+  {/if}
+  {if $page == 1}
+  <tr>
+    <td id="hline">
+      <form method="post" action="" style="display:inline;">
+      {foreach from=$form_params item=item}
+        <input type="hidden" value="{$item.value}" name="{$item.name}">
+      {/foreach}
+      <table cellspacing="0" cellpadding="5" align="center" width="100%">
+        <tr>
+          <td width="20%" class="form_left"> 
+            Flotte:
+          </td>
+          <td class="form_right"> 
+            <select name="fleetnum" class="form" title="{$items.fleetnum.title}">
+              {foreach from=$items.fleetnum.list item=item}
+                <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+              {/foreach}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="form_left" id="hline"> 
+            ETA:
+          </td>
+          <td class="form_right" id="hline"> 
+            <input type="text" name="eta" value="{$items.eta.value}" title="{$items.eta.title}" class="{$items.eta.class}" maxlength="255" size="10">
+          </td>
+        </tr>
+        <tr>
+          <td class="form_left" id="hline"> 
+            Zeit im Orbit:
+          </td>
+          <td class="form_right" id="hline"> 
+            <input type="text" name="orbit" value="{$items.orbit.value}" title="{$items.orbit.title}" class="{$items.orbit.class}" maxlength="255" size="10">
+          </td>
+        </tr>
+        <tr>
+          <td class="form_left" id="hline">&nbsp; 
+            
+          </td>
+          <td class="form_right" id="hline"> 
+            <input class="button" type="submit" name="send" value="Speichern">
+          </td>
+        </tr>
+      </table>
+      </form>
+    </td>
+  </tr>
+  {elseif $page == 2}
+  <tr>
+    <td id="hline" style="padding: 5px;">
+    {if $scan.hasmili || $scan.hasunit}
+      <form method="post" action="" style="display:inline;">
+      {foreach from=$form_params item=item}
+        <input type="hidden" value="{$item.value}" name="{$item.name}">
+      {/foreach}
+      <table width="100%" cellpadding="5" cellspacing="0" >
+      {if $scan.hasmili}
+        <tr>
+          <td width="30%" valign="top" align="center" class="form_left">
+            <b>Militärscan laden</b><br><br>
+            <input type="radio" name="scan" value="mili" {$items.scan.list[0].checked}>
+            <br>
+            <br>
+            <select name="fleet">
+              {foreach from=$items.fleet.list item=item}
+                <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+              {/foreach}
+            </select>
+          </td>
+          <td valign="top" class="form_right">
+            {include file="scan_mili.html"}
+          </td>
+        </tr>
+      {/if}
+      {if $scan.hasunit}
+        <tr>
+          <td valign="top" id="hline" align="center" class="form_left">
+            <b>Einheitenscan laden</b><br><br>
+            <input type="radio" name="scan" value="unit" {$items.scan.list[1].checked}>
+          </td>
+          <td valign="top" id="hline" class="form_right">
+            {include file="scan_unit.html"}
+          </td>
+        </tr>
+      {/if}
+      <tr>
+        <td valign="top" id="hline" align="center" class="form_left">&nbsp;
+          
+        </td>
+        <td valign="top" id="hline"  class="form_right">
+          <input class="button" type="submit" name="send" value="Scan laden">
+        </td>
+      </tr>
+      </table>
+      </form>
+    {else}
+        Keine Militär oder Einheitenscans zu {$status.gala}:{$status.pos} gefunden.
+    {/if}
+    </td>
+  </tr>
+	{elseif $page == 3}
+	<tr>
+    <td>
+        <form action="" method="post" style="display:inline;">
+      {foreach from=$form_params item=item}
+        <input type="hidden" value="{$item.value}" name="{$item.name}">
+      {/foreach}
+        <table cellpadding="5" cellspacing="0" width="100%">
+        {foreach from=$fleetupdateform item=item}
+            <tr>
+                <td class="form_left" width="20%" id="hline">
+                {$item.title}
+                </td>
+                <td class="form_right" id="hline">
+            <input type="text" name="{$item.name}" value="{$item.value|default:"0"}" class="{$item.class}" title="{$item.title}" size="10">
+                </td>
+            </tr>
+        {/foreach}
+            <tr>
+                <td class="form_left" id="hline">&nbsp;</td>
+                <td class="form_right" id="hline">
+                    <input class="button" type="submit" name="send" value="Speichern">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+	</tr>
+	{elseif $page == 4}
+	<tr>
+    <td>
+        <form action="" method="post" style="display:inline;">
+      {foreach from=$form_params item=item}
+        <input type="hidden" value="{$item.value}" name="{$item.name}">
+      {/foreach}
+        <table cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+                <td class="form_left" width="20%" id="hline">
+                IRC Zeile(n):
+                </td>
+                <td class="form_right" id="hline">
+			            <textarea name="code"  rows="5" cols="50" class="{$items.code.class}" title="{$items.code.title}">{$items.code.value}</textarea>
+                </td>
+								<td class="form_right" id="hline">
+									Übernimmt Flottenparserausgabe des Wurstscriptes als Flottendaten, einfach die IRC Zeilen kopieren.
+								</td>
+            </tr>
+            <tr>
+                <td class="form_left" id="hline">&nbsp;</td>
+                <td class="form_right" id="hline" colspan="2">
+                    <input class="button" type="submit" name="send" value="Parsen">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </td>
+	</tr>
+  {/if}
+  <tr >
+    <td class="footer" align="right" id="hline">
+      footer
+    </td>
+  </tr>
+</table>
+{/strip}

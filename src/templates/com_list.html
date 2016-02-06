@@ -1,0 +1,110 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Kommentare</b><br> <br> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td  class="tbl_1" height="30" colspan="2"> 
+      <table class="tbl_1" width="100%" cellspacing="0" cellpadding="5">
+        <tr> 
+          <td colspan="2" width="100%" valign="top"> <b>{$news.title}</b> ({$news.ntime}&nbsp;{$news.ndate}) 
+            von <a href="user.php?action=showdetails&id={$news.uid}"><img  title="Details von {$news.nick}"src="images/arrows_user.gif" width="12" height="13" border="0"></a>&nbsp;{$news.nick} {if $news.usertitle} ({$news.usertitle}){/if}</td>
+         </tr>
+        <tr> 
+          <td  colspan="2" width="100%" valign="top">
+ 			{$news.content}
+			</td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td width="33%" align="left" valign="top"><a href="{$backlink}"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+          </td>
+          <td width="33%" align="center" valign="top"><a  title="Neues Kommentar" href="index.php?action=addcom&nid={$news.nid}">Neues 
+            Kommentar </a> </td>
+          <td width="33%" align="right" valign="top">{$forms.comlist.pages}</td>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_1,tbl_2"}
+  {section name=list loop=$comlist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="5">
+        <tr> 
+          <td width="100%"  colspan="2" align="left" valign="top"> {$comlist[list].cdate}, 
+            {$comlist[list].ctime} Uhr</td>
+         </tr>
+        <tr> 
+          <td  colspan="2" width="100%" valign="top">
+ 			{$comlist[list].content}
+			</td>
+         </tr>
+        <tr> 
+          <td width="30%">{if $canedit}<a href="index.php?action=deletecom&nid={$comlist[list].nid}&cid={$comlist[list].cid}"><img src="images/buttons_delete.gif" border="0"></a>{else}&nbsp;{/if} 
+          </td>
+		  <td width="70%" align="right" valign="top">  
+				{if $comlist[list].uid}
+            von <a href="user.php?action=showdetails&id={$comlist[list].uid}"><img  title="Details von {$comlist[list].nick}"src="images/arrows_user.gif" width="12" height="13" border="0"></a>&nbsp;{$comlist[list].nick} ({$comlist[list].gala}:{$comlist[list].pos}) 
+				{else}
+					[User gelöscht]
+				{/if}
+				</td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Kommentare vorhanden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.comlist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

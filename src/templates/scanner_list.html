@@ -1,0 +1,107 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Scanner&uuml;bersicht</b><br> <br> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Einheiten / Militär</b></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+	{foreach from=$mililist item=user}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table width="80%" align="center" cellpadding="3" cellspacing="0" class="{$class}">
+        <tr align="center"> 
+          <td width="20%" align="center">[{$user.tag}]</td>
+          <td width="20%" align="center">({$user.gala}:{$user.pos})</td>
+          <td width="40%" align="center" nowrap>{$user.nick} {if $user.usertitle}({$user.usertitle}){/if}</td>
+          <td width="20%" align="center">{$user.svs} sVs</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+	{foreachelse}
+  {cycle print=false assign="class"}
+		<tr> 
+			<td  class="{$class}" height="30" colspan="2"> 
+				<table width="80%" align="center" cellpadding="3" cellspacing="0" class="{$class}">
+					<tr align="center"> 
+						<td><b>Keine vorhanden!</b></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+  {/foreach}
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Geschütz / Nachrichten</b></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+	{foreach from=$newslist item=user}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table width="80%" align="center" cellpadding="3" cellspacing="0" class="{$class}">
+        <tr align="center"> 
+          <td width="20%" align="center">[{$user.tag}]</td>
+          <td width="20%" align="center">({$user.gala}:{$user.pos})</td>
+          <td width="40%" align="center" nowrap>{$user.nick} {if $user.usertitle}({$user.usertitle}){/if}</td>
+          <td width="20%" align="center">{$user.svs} sVs</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+	{foreachelse}
+  {cycle print=false assign="class"}
+		<tr> 
+			<td  class="{$class}" height="30" colspan="2"> 
+				<table width="80%" align="center" cellpadding="3" cellspacing="0" class="{$class}">
+					<tr align="center"> 
+						<td><b>Keine vorhanden!</b></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+  {/foreach}
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

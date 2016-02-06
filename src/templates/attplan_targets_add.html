@@ -1,0 +1,151 @@
+{literal}
+<script language="JavaScript" type="text/javascript">
+function selectaddtyp() {
+	if(document.getElementById('addtyp1').checked) {
+		document.getElementById('galaxy_1').disabled = false
+		document.getElementById('galaxy_2').disabled = true
+		document.getElementById('start_2').disabled = true
+		document.getElementById('end_2').disabled = true
+		document.getElementById('galaxy_3').disabled = true
+		document.getElementById('pos_3').disabled = true
+		document.getElementById('galaxy_1').focus()
+		return
+	}
+	if(document.getElementById('addtyp2').checked) {
+		document.getElementById('galaxy_1').disabled = true
+		document.getElementById('galaxy_2').disabled = false
+		document.getElementById('start_2').disabled = false
+		document.getElementById('end_2').disabled = false
+		document.getElementById('galaxy_3').disabled = true
+		document.getElementById('pos_3').disabled = true
+		document.getElementById('galaxy_2').focus()
+		return
+	}
+	if(document.getElementById('addtyp3').checked) {
+		document.getElementById('galaxy_1').disabled = true
+		document.getElementById('galaxy_2').disabled = true
+		document.getElementById('start_2').disabled = true
+		document.getElementById('end_2').disabled = true
+		document.getElementById('galaxy_3').disabled = false
+		document.getElementById('pos_3').disabled = false
+		document.getElementById('galaxy_3').focus()
+		return
+	}
+}
+
+</script>
+{/literal}
+<form name="form" method="post" action="attplan.php" style="display:inline">
+  <input name="send" type="hidden" id="send" value="1">
+  <input name="id" type="hidden" id="id" value="{$attplan.attid}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" value="addtargets">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2" style="padding: 5px"> 
+            <b>{$attplan.title}</b><br><br><b>Angriffsziele hinzuf&uuml;gen</b><br>
+      </td>
+    </tr>
+    {if $errors} 
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr>
+            <td>{foreach from=$errors item=error}{$error}<br>
+              {/foreach}</td>
+          </tr>
+        </table></td>
+    </tr>
+    {/if} 
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_1"> 
+			<td style="padding: 3px" colspan="2">
+      	<input id="addtyp1" type="radio" onClick="selectaddtyp(1)" value="{$items.addtyp.list[0].value}"  name="addtyp" {$items.addtyp.list[0].checked}>
+        &nbsp;&nbsp;&nbsp;<b>ganze Galaxie hinzufügen (1-12)</b>
+      </td>
+    </tr>
+    <tr class="tbl_1" > 
+<!--
+      <td width="30%" style="padding: 3px" align="right">
+            Galaxie
+			</td>
+-->			
+      <td  colspan="2" style="padding: 5px"> 
+				Galaxie <input  id="galaxy_1" name="galaxy_1" type="text" class="{$items.galaxy_1.class}" value="{$items.galaxy_1.value}" size="5" maxlength="5" disabled> 
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_1"> 
+      <td colspan="2" style="padding: 3px">
+      	<input id="addtyp2" onClick="selectaddtyp(2)" name="addtyp" type="radio" value="{$items.addtyp.list[1].value}" {$items.addtyp.list[1].checked}>&nbsp;&nbsp;&nbsp;<b>Teilbereich einer Galaxie hinzufügen (xx-yy)</b>
+      </td>
+    </tr>
+    <tr class="tbl_1" > 
+<!--      <td style="padding: 3px">
+            Ziele
+			</td>
+-->
+      <td style="padding: 3px" colspan="2"> 
+				Galaxie <input  id="galaxy_2" name="galaxy_2" type="text" class="{$items.galaxy_2.class}" value="{$items.galaxy_2.value}" size="5" maxlength="5"> 
+				von Position <input   id="start_2" name="start_2" type="text" class="{$items.start_2.class}" value="{$items.start_2.value}" size="5" maxlength="5">
+					bis <input   id="end_2" name="end_2" type="text" class="{$items.end_2.class}" value="{$items.end_2.value}" size="5" maxlength="5">
+					hinzufügen
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_1"> 
+      <td colspan="2" style="padding: 3px">
+      	<input name="addtyp" onClick="selectaddtyp(3)" id="addtyp3" type="radio" value="{$items.addtyp.list[2].value}" {$items.addtyp.list[2].checked}>
+        &nbsp;&nbsp;&nbsp;<b>einzelnes Ziel hinzufügen (gala : pos)</b> </td>
+    </tr>
+    <tr class="tbl_1" > 
+<!--      <td style="padding: 3px">
+       	Ziel
+			</td>
+-->
+      <td style="padding: 3px" colspan="2"> 
+				Galaxie <input   id="galaxy_3" name="galaxy_3" type="text" class="{$items.galaxy_3.class}" value="{$items.galaxy_3.value}" size="5" maxlength="5"> 
+				 Position <input   id="pos_3" name="pos_3" type="text" class="{$items.pos_3.class}" value="{$items.pos_3.value}" size="5" maxlength="5">
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"> <a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              <img src="images/arrows_help.gif" width="12" height="13" border="0"> 
+              </a> </td>
+            <td> <a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a> </td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input  title="Speichern" type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>
+<script type="text/javascript" language="JavaScript">
+selectaddtyp()
+</script>

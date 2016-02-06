@@ -1,0 +1,82 @@
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td > 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td style="padding: 5px"><b>{$highscore.title}</b><br> <br>
+					</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4">
+    <td ><img src="/" width="1" height="1"></td>
+  </tr>
+	<tr>
+		<td colspan="2" align="left" style="padding: 5px;">
+			<a  class="noline" href="index.php?action=highscore&show=total">Total</a>&nbsp;&#8226;&nbsp;
+			<a  class="noline" href="index.php?action=highscore&show=day">Mitarbeiter
+			des Tages</a>&nbsp;&#8226;&nbsp;
+			<a  class="noline" href="index.php?action=highscore&show=week">Mitarbeiter
+			der Woche</a>
+		</td>
+	</tr>
+  <tr class="tbl_4"> 
+    <td ><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td align="right" style="padding: 5px;">{$pages}</td>
+  </tr>
+	<tr>
+		<td align="center" style="padding:3px ">
+			{if $highscore.list}
+				<table cellpadding="3" cellspacing="0">
+					<tr align="center">
+						<td><strong>
+						Platz
+					  </strong></td>
+						<td><strong>
+						Koords
+					  </strong></td>
+						<td><strong>
+						Nick
+					  </strong></td>
+						<td><strong>
+						Allianz
+					  </strong></td>
+						<td><strong>
+						Punkte
+					  </strong></td>
+					</tr>
+					{foreach from=$highscore.list item=user}
+						<tr align="center">
+							<td>
+								{$user.place}
+							</td>
+							<td>
+								({$user.gala}:{$user.pos})
+							</td>
+							<td>
+								{$user.nick}
+							</td>
+							<td>
+								[{$user.tag}]
+							</td>
+							<td>
+								{$user.activity_points}
+							</td>
+						</tr>
+					{/foreach}
+				</table>
+			{else}
+				<b>keine Einträge vorhanden</b>
+			{/if}
+		</td>
+	</tr>
+  <tr class="tbl_5"> 
+    <td ><br>
+    </td>
+  </tr>
+</table>

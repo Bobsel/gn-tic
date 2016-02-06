@@ -1,0 +1,32 @@
+<table cellspacing="0" cellpadding="0" width="100%" class="content" style="padding-top: 3px;">
+	{foreach from=$box.fleets.list item=item}
+		<tr valign="top" class="line"> 
+      <td width="16">
+  		  <a  title="Flotte {$item.num} aktualisieren" href="user.php?action=fleetstatus&fleet={$item.num}"><img src="images/arrows_data.gif" border="0"></a>
+	    </td>
+      <td nowrap> <b><a  title="Flotte {$item.num} aktualisieren" class="menu" href="user.php?action=fleetstatus&fleet={$item.num}">Flotte 
+        {$item.num}:</a></b><br>
+					{if $item.return_flight}
+						<span class="blue">
+						Rückflug  
+						{if $item.tgala}({$item.tgala}:{$item.tpos}){/if}<br>
+						</span>
+						ETA {$item.eta}<br>
+					{else}
+						{if $item.status == 0}
+							Im Orbit<br>
+						{elseif $item.status == 1}
+						 <span class="red">Angriffsflug {if $item.tgala}({$item.tgala}:{$item.tpos}){/if}</span><br>
+							ETA {$item.eta}<br>
+						{elseif $item.status == 2}
+						 <span class="green">Verteidigung {if $item.tgala}({$item.tgala}:{$item.tpos}){/if}</span><br>
+							ETA {$item.eta}<br>
+						{else}
+						 <span class="blue">Rückflug</span><br>
+							ETA {$item.eta}<br>
+						{/if}
+					{/if}
+				</td>
+			</tr>
+		{/foreach}
+</table>

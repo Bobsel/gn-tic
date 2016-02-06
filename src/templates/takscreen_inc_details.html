@@ -1,0 +1,341 @@
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5">
+    <td > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr>
+          <td ><b>Incoming auf [{$inc.tag}] {$inc.nick} ({$inc.gala}:{$inc.pos}) </b> {if 
+            $inc.canedit}<a href="user.php?action=fleet&id={$inc.uid}" title="Flottendaten von {$inc.nick} updaten"><img src="images/arrows_search.gif" width="12" height="13" border="0"></a>{/if} 
+            {if $inc.safe}<span class="tbl_red"><strong>[safe]</strong></span>{/if}<br>
+            <br>
+          </td>
+        </tr>
+      </table></td>
+
+  </tr>
+  <tr class="tbl_5">
+    <td> 
+		  <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td align="left" > <a href="{$backlink}" title="zurück"><img src="images/buttons_back.gif" border="0"></a>&nbsp;&nbsp;</td>
+          <td align="right" >
+						<a href="takscreen.php?action=adddeffer&id={$inc.uid}" title="Mich als Deffer eintragen">Hier deffen</a> 
+						{if $inc.cansetsafe}
+  						{if $inc.safe}
+  							&bull; <a href="takscreen.php?action=unsafe&id={$inc.uid}"  title="User ist nicht ausreichend gedefft" >Unsafe</a>&nbsp;
+  						{else}
+  							&bull; <a href="takscreen.php?action=safe&id={$inc.uid}"  title="User ist ausreichend gedefft" >Safe</a>&nbsp;
+  						{/if}
+  				  {/if}
+						&bull; <a href="takscreen.php?action=recallall&id={$inc.uid}"  title="alle Atter recallen" >Atter recallen</a>
+           </td>
+        </tr>
+      </table>
+		</td>
+  </tr>
+  <tr class="tbl_4">
+    <td ><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr>
+    <td >
+			<table cellpadding="3" cellspacing="0" width="100%" class="small">
+        <tr>
+          <td bgcolor="#CCCCCC">
+          <strong>Flotte des Angegriffenen </strong>letztes update: {$inc.fleetupdate}
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 0px;" bgcolor="#E8E7E7">
+            <table cellpadding="3" cellspacing="0">
+              <tr align="center">
+                <td bgcolor="#E8E7E7">Flotte</td>
+                <td bgcolor="#E8E7E7">Cancris</td>
+                <td bgcolor="#E8E7E7"    >Freggs</td>
+                <td bgcolor="#E8E7E7"    >Zerris</td>
+                <td bgcolor="#E8E7E7"    >Kreuzer</td>
+                <td bgcolor="#E8E7E7"    >Schlachter</td>
+                <td bgcolor="#E8E7E7"    >Träger</td>
+                <td bgcolor="#E8E7E7"    >Jäger</td>
+                <td bgcolor="#E8E7E7"    >Bomber</td>
+                <td bgcolor="#E8E7E7"   >Cleps</td>
+              </tr>
+              {foreach from=$userfleet item=fleet}
+              <tr {$fleet.class} id="hline">
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.name}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.cancris}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.fregatten}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.zerstoerer}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.kreuzer}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.schlachter}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.traeger}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.jaeger}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.bomber}</td>
+                <td bgcolor="#E8E7E7"  align="center" id="hline" >{$fleet.kleptoren}</td>
+              </tr>
+              {/foreach} 
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td bgcolor="#CCCCCC"><strong>Orbitalverteidigung </strong>letztes update: {$inc.deffupdate}</td>
+        </tr>
+        <tr>
+          <td style="padding: 0px;" bgcolor="#E8E7E7">
+      			<table cellpadding="3" cellspacing="0" class="small">
+      				<tr align="center"> 
+      					<td bgcolor="#E8E7E7"  >Horus</td>
+      					<td bgcolor="#E8E7E7"  >Rubium</td>
+      					<td bgcolor="#E8E7E7"  >Pulsar</td>
+      					<td bgcolor="#E8E7E7"  >Coon</td>
+      					<td bgcolor="#E8E7E7"  >Centurion</td>
+      				</tr>
+      				<tr align="center"> 
+      					<td bgcolor="#E8E7E7"  id="hline">{$inc.horus}</td>
+      					<td bgcolor="#E8E7E7"  id="hline">{$inc.rubium}</td>
+      					<td bgcolor="#E8E7E7"  id="hline">{$inc.pulsar}</td>
+      					<td bgcolor="#E8E7E7"  id="hline">{$inc.coon}</td>
+      					<td bgcolor="#E8E7E7"  id="hline">{$inc.centurion}</td>
+      				</tr>
+      			</table>
+          </td>
+        </tr>
+			</table>
+		</td>
+  </tr>
+  <form name="form" method="POST" action="takscreen.php">
+    <input type="hidden" name="send" value="1">
+    <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+    <input name="id" type="hidden" id="id" value="{$inc.uid}">
+    <tr>
+      <td style="padding: 15px 0px 15px 5px;" id="hline"> 
+        ausgewählte Flotten: <select class="form_small" onchange="submit()" name="action"><option>Aktion..</option><option value="hidefleets">ausblenden</option></select> {if $inc.atter_filter || $inc.deffer_filter} &#8226; <a  class="admin" href="takscreen.php?action=resetfilter&id={$inc.uid}">Filter
+        löschen</a>{/if}
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 0px;"> 
+  			<table  width="100%" cellpadding="3" cellspacing="0" class="small">
+				  <tr>
+				    <td colspan="16"  bgcolor="#CCCCCC">
+              <strong>Angreifer</strong>{if $inc.atter_filter} <span class="red">Filter aktiv</span>{/if}
+				    </td>
+				  </tr>
+  				{if $atterlist}
+  					<tr align="center">
+  						<td bgcolor="#E8E7E7">&nbsp;</td>
+  						<td bgcolor="#E8E7E7">Koords</td>
+  						<td bgcolor="#E8E7E7">Nick</td>
+  						<td bgcolor="#E8E7E7">Flotte</td>
+  						<td bgcolor="#E8E7E7">ETA</td>
+  						<td bgcolor="#E8E7E7">Cancris</td>
+  						<td bgcolor="#E8E7E7">Freggs</td>
+  						<td bgcolor="#E8E7E7">Zerris</td>
+  						<td bgcolor="#E8E7E7">Kreuzer</td>
+  						<td bgcolor="#E8E7E7">Schlachter</td>
+  						<td bgcolor="#E8E7E7">Träger</td>
+  						<td bgcolor="#E8E7E7">Jäger</td>
+  						<td bgcolor="#E8E7E7">Bomber</td>
+  						<td bgcolor="#E8E7E7">Cleps</td>
+  						<td bgcolor="#E8E7E7">&nbsp;</td>
+  						<td bgcolor="#E8E7E7">&nbsp;</td>
+  					</tr>
+  					{foreach from=$atterlist item=fleet}
+  						{if !$fleet.hide}
+    						<tr align="center" title="{$fleet.title}">
+      						<td id="hline"   bgcolor="#E8E7E7"><input type="checkbox" name="hidefleets[]" value="{$fleet.fsid}"></td>
+      						<td id="hline"   bgcolor="#E8E7E7">{$fleet.gala}:{$fleet.pos}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.nick|default:"&nbsp;"}</td>
+      						<td id="hline"    nowrap bgcolor="#E8E7E7">Flotte {$fleet.fleetnum}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.eta}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.cancris|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.fregatten|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.zerstoerer|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.kreuzer|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.schlachter|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.traeger|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.jaeger|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.bomber|default:"0"}</td>
+      						<td id="hline"    bgcolor="#E8E7E7">{$fleet.kleptoren|default:"0"}</td>
+      						<td id="hline"   nowrap align="left" bgcolor="#E8E7E7">
+    								{if $fleet.canrecall}
+    									<a  title="Atter recallen" href="takscreen.php?action=recall&id={$fleet.fsid}"><img src="images/arrows_delete_2.gif" border="0"></a>
+    									{else}
+    									&nbsp;
+    								{/if}
+    							</td>
+    							<td id="hline"   nowrap align="left" bgcolor="#E8E7E7">
+    							 {if $fleet.canedit}
+    								 <a  title="Atter updaten" href="takscreen.php?action=fleetstatus&id={$fleet.fsid}"><img src="images/arrows_search_2.gif" border="0"></a>
+    								 {else}
+    								 &nbsp;
+    							  {/if}
+    							</td>
+    						</tr>
+  						{/if}
+  					{/foreach}
+  				{else}
+  					<tr>
+  						<td colspan="16" id="hline" bgcolor="#E8E7E7"> <b><span class="red">keine Angreifer im Filter</span></b> </td>
+  					</tr>
+  				{/if}
+				  <tr>
+				    <td colspan="16" bgcolor="#CCCCCC">
+              <strong>Verteidiger</strong>{if $inc.deffer_filter} <span class="red">Filter aktiv</span>{/if}
+				    </td>
+				  </tr>
+				  {if $inc.deffer}
+  				  {if $defferlist}
+    					<tr align="center">
+    						<td bgcolor="#E8E7E7">&nbsp;</td>
+    						<td bgcolor="#E8E7E7">Koords</td>
+    						<td bgcolor="#E8E7E7">Nick</td>
+    						<td bgcolor="#E8E7E7">Flotte</td>
+    						<td bgcolor="#E8E7E7">ETA</td>
+    						<td bgcolor="#E8E7E7">Cancris</td>
+    						<td bgcolor="#E8E7E7">Freggs</td>
+    						<td bgcolor="#E8E7E7">Zerris</td>
+    						<td bgcolor="#E8E7E7">Kreuzer</td>
+    						<td bgcolor="#E8E7E7">Schlachter</td>
+    						<td bgcolor="#E8E7E7">Träger</td>
+    						<td bgcolor="#E8E7E7">Jäger</td>
+    						<td bgcolor="#E8E7E7">Bomber</td>
+    						<td bgcolor="#E8E7E7">Cleps</td>
+    						<td bgcolor="#E8E7E7">&nbsp;</td>
+    						<td bgcolor="#E8E7E7">&nbsp;</td>
+    					</tr>
+    					{foreach from=$defferlist item=fleet}
+    						{if !$fleet.hide}
+      						<tr align="center" title="{$fleet.title}">
+        						<td id="hline"   bgcolor="#E8E7E7"><input type="checkbox" name="hidefleets[]" value="{$fleet.fsid}"></td>
+        						<td id="hline"   bgcolor="#E8E7E7">{$fleet.gala}:{$fleet.pos}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.nick|default:"&nbsp;"}</td>
+        						<td id="hline"    nowrap bgcolor="#E8E7E7">Flotte {$fleet.fleetnum}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.eta}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.cancris|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.fregatten|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.zerstoerer|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.kreuzer|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.schlachter|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.traeger|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.jaeger|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.bomber|default:"0"}</td>
+        						<td id="hline"    bgcolor="#E8E7E7">{$fleet.kleptoren|default:"0"}</td>
+        						<td id="hline"   nowrap align="left" bgcolor="#E8E7E7">
+      								{if $fleet.canrecall}
+      									<a  title="Atter recallen" href="takscreen.php?action=recall&id={$fleet.fsid}"><img src="images/arrows_delete_2.gif" border="0"></a>
+      									{else}
+      									&nbsp;
+      								{/if}
+      							</td>
+      							<td id="hline"   nowrap align="left" bgcolor="#E8E7E7">
+      							 {if $fleet.canedit}
+      								 <a  title="Atter updaten" href="takscreen.php?action=fleetstatus&id={$fleet.fsid}"><img src="images/arrows_search_2.gif" border="0"></a>
+      								 {else}
+      								 &nbsp;
+      							  {/if}
+      							</td>
+      						</tr>
+    						{/if}
+    					{/foreach}
+    				{else}
+    					<tr>
+    						<td colspan="16" bgcolor="#E8E7E7" style="padding: 5px;"> <b><span class="red">keine Verteidiger im Filter</span></b> </td>
+    					</tr>
+    				{/if}
+  				{else}
+  					<tr>
+  						<td colspan="16" bgcolor="#E8E7E7" style="padding: 5px;"> <b>keine Verteidiger vorhanden</b></td>
+  					</tr>
+  				{/if}
+  		  </table>
+      </td>
+    </tr>
+  </form>
+  <tr>
+    <td style="padding: 0px;">
+  		<table  width="100%" cellpadding="0" cellspacing="0" class="small">
+  		  <tr>
+  		    <td bgcolor="#CCCCCC" colspan="2" style="padding: 5px;">
+            <strong>Gesamtübersicht</strong>
+  		    </td>
+  		  </tr>
+  		  <tr>
+  		    <td bgcolor="#E8E7E7">
+            <table cellpadding="3" cellspacing="0" class="small">
+              <tr align="center">
+                <td bgcolor="#E8E7E7">&nbsp;</td>
+                <td bgcolor="#E8E7E7"   >Cancris</td>
+                <td bgcolor="#E8E7E7"   >Freggs</td>
+                <td bgcolor="#E8E7E7"   >Zerris</td>
+                <td bgcolor="#E8E7E7"   >Kreuzer</td>
+                <td bgcolor="#E8E7E7"   >Schlachter</td>
+                <td bgcolor="#E8E7E7"   >Träger</td>
+                <td bgcolor="#E8E7E7"   >Jäger</td>
+                <td bgcolor="#E8E7E7"   >Bomber</td>
+                <td bgcolor="#E8E7E7"   >Cleps</td>
+              </tr>
+              <tr >
+              <tr align="center">
+                <td bgcolor="#E8E7E7"  id="hline" >Angreifer</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.cancris|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.fregatten|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.zerstoerer|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.kreuzer|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.schlachter|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.traeger|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.jaeger|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.bomber|default:"0"}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$attersum.kleptoren|default:"0"}</td>
+              </tr>
+              <tr align="center">
+                <td bgcolor="#E8E7E7"  id="hline" >Verteidiger</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.cancris|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.fregatten|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.zerstoerer|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.kreuzer|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.schlachter|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.traeger|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.jaeger|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.bomber|default:0}</td>
+                <td bgcolor="#E8E7E7"  id="hline" >{$deffersum.kleptoren|default:0}</td>
+              </tr>
+            </table>
+  		    </td>
+          <td bgcolor="#E8E7E7"  valign="middle" style="padding: 5px;">
+          <form name="form" action="simulator.php" method="post" style="display:inline">
+            <input tabindex="28" onclick="copy('{$ircattdata}');" name="ircpopup" type="button"  class="button_small" id="calculate" value="IRC Copy"><br /><img src="images/spacer.gif" height="20"><br /> 
+            <input type="hidden" value="{$attersum.jaeger|default:0}"      name="attack0">
+            <input type="hidden" value="{$attersum.bomber|default:0}"      name="attack1">
+            <input type="hidden" value="{$attersum.fregatten|default:0}"   name="attack2">
+            <input type="hidden" value="{$attersum.zerstoerer|default:0}"  name="attack3">
+            <input type="hidden" value="{$attersum.kreuzer|default:0}"     name="attack4">
+            <input type="hidden" value="{$attersum.schlachter|default:0}"  name="attack5">
+            <input type="hidden" value="{$attersum.traeger|default:0}"     name="attack6">
+            <input type="hidden" value="{$attersum.kleptoren|default:0}"   name="attack7">
+            <input type="hidden" value="{$attersum.cancris|default:0}"     name="attack8">
+            <input type="hidden" value="{$deffersum.jaeger|default:0}"     name="deff0">
+            <input type="hidden" value="{$deffersum.bomber|default:0}"     name="deff1">
+            <input type="hidden" value="{$deffersum.fregatten|default:0}"  name="deff2">
+            <input type="hidden" value="{$deffersum.zerstoerer|default:0}" name="deff3">
+            <input type="hidden" value="{$deffersum.kreuzer|default:0}"    name="deff4">
+            <input type="hidden" value="{$deffersum.schlachter|default:0}" name="deff5">
+            <input type="hidden" value="{$deffersum.traeger|default:0}"    name="deff6">
+            <input type="hidden" value="{$deffersum.kleptoren|default:0}"  name="deff7">
+            <input type="hidden" value="{$deffersum.cancris|default:0}"    name="deff8">
+            <input type="hidden" value="{$inc.horus|default:0}"            name="deff13">
+            <input type="hidden" value="{$inc.rubium|default:0}"           name="deff9">
+            <input type="hidden" value="{$inc.pulsar|default:0}"           name="deff10">
+            <input type="hidden" value="{$inc.coon|default:0}"             name="deff11">
+            <input type="hidden" value="{$inc.centurion|default:0}"        name="deff12">
+            <input type="hidden" value="500"                               name="metall">
+            <input type="hidden" value="500"                               name="kristall">
+            <input tabindex="28" name="calculate" type="submit"  class="button_small" id="calculate" value="Simulieren">
+          </form>
+          </td>
+  		  </tr>
+  		</table>
+    </td>
+  </tr>
+  <tr class="tbl_5" id="hline">
+    <td ><br> </td>
+  </tr>
+</table>

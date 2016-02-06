@@ -1,0 +1,35 @@
+  					<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="20%"
+                {if $scan.mili_scanner}
+                  title="gescannt von {$scan.mili_scanner}{if $scan.mili_svs} {$scan.mili_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Militär ({$scan.mili_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="80%">
+								{if $scan.mili_timeout}<span class="red" style="cursor: help;" title="Militärscan ist älter als {$scan.timeout_hours} Stunden">{/if}
+                  {$scan.mili_scanage} alt
+                {if $scan.mili_timeout}</span>{/if}
+                </td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Orbit:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[0]}</td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Flotte 1:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[1]}</td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Flotte 2:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[2]}</td>
+              </tr>
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.mili_copy}');" name="mili_popup" type="button" class="form_small" value="IRC Copy" title="Militärscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="left">
+                  <input onclick="popup('{$scan.mili_link}');" name="mili_popup" type="button" class="form_small" value="IRC Popup" title="Militärscan als Popup öffnen">
+                </td>
+              </tr>
+            </table>

@@ -1,0 +1,29 @@
+						<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="20%"
+                {if $scan.news_scanner}
+                  title="gescannt von {$scan.news_scanner}{if $scan.news_svs} {$scan.news_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Nachrichten ({$scan.news_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="80%">
+								{if $scan.news_timeout}<span class="red" style="cursor: help;" title="Nachrichtenscan ist älter als {$scan.timeout_hours} Stunden">{/if}
+                  {$scan.news_scanage} alt
+                {if $scan.news_timeout}</span>{/if}
+                </td>
+              </tr>
+							{foreach from=$scan.news_formated_newsdata item=line}
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">{$line[1]}</td>
+                <td  bgcolor="#E8E7E7" align="left">{$line[2]}</td>
+              </tr>
+							{/foreach}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.news_copy}');" name="news_popup" type="button" class="form_small" value="IRC Copy" title="Nachrichtenscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="left">
+                  <input onclick="popup('{$scan.news_link}');" name="news_popup" type="button" class="form_small" value="IRC Popup" title="Nachrichtenscan als Popup öffnen">
+                </td>
+              </tr>
+            </table>

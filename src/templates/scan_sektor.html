@@ -1,0 +1,60 @@
+            <table cellspacing="1" cellpadding="3" width="100%" height="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.sector_scanner}
+                  title="gescannt von {$scan.sector_scanner}{if $scan.sector_svs} {$scan.sector_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Sektor ({$scan.sector_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+                {if $scan.sector_timeout}<span class="red" style="cursor: help;" title="Sektorscan ist älter als {$scan.timeout_hours} Stunden">{/if}
+                  {$scan.sector_scanage} alt
+                {if $scan.sector_timeout}</span>{/if}
+                </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Punkte:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_punkte2}</td>
+              </tr>
+              <tr style="cursor: help;" title="Attbegrenzung: maximal {$scan.sector_macht_max} Macht für den Atter">
+                <td  bgcolor="#E8E7E7" align="right">Macht:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_macht}</td>
+              </tr>
+              <tr style="cursor: help;" title="Exen in 5 Ticks: {$scan.sector_exen_5}, in 10 Ticks: {$scan.sector_exen_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left"><b><span class="red">{$scan.sector_exen}</span></b></td>
+              </tr>
+              <tr style="cursor: help;" title="Metall-Exen in 5 Ticks: {$scan.sector_metall_5}, in 10 Ticks: {$scan.sector_metall_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >M-Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_metall}</td>
+              </tr>
+              <tr style="cursor: help;" title="Kristall-Exen in 5 Ticks: {$scan.sector_kristall_5}, in 10 Ticks: {$scan.sector_kristall_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >K-Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_kristall}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_ships}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Verteidigung:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_deff}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Asteroiden:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_roids}</td>
+              </tr>
+              {section start=0 loop=`$scan.maxrows-9` name="sectorscan"}  
+                <tr> 
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+              {/section}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.sector_copy}');" name="sector_copy" type="button" class="form_small" value="IRC Copy" title="Sektorscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.sector_link}');" name="sector_popup" type="button" class="form_small" value="IRC Popup" title="Sektorscan als Popup öffnen">
+                </td>
+              </tr>
+            </table>

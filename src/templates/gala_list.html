@@ -1,0 +1,89 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Galaxien</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> <div title="Neue Gruppe hinzufügen"></div></td>
+          <td width="50%" align="right">{$forms.list.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr align="center"> 
+          <td width="25%">Galaxie <a href="admin.php?action=galaxy&sort=gala&order=asc"><img src="images/arrows_orderby_asc{$forms.list.gala.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=galaxy&sort=gala&order=desc"><img src="images/arrows_orderby_desc{$forms.list.gala.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">Allianz <a href="admin.php?action=galaxy&sort=tag&order=asc"><img src="images/arrows_orderby_asc{$forms.list.tag.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=galaxy&sort=tag&order=desc"><img src="images/arrows_orderby_desc{$forms.list.tag.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">Mitglieder <a href="admin.php?action=galaxy&sort=member&order=asc"><img src="images/arrows_orderby_asc{$forms.list.member.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=galaxy&sort=member&order=desc"><img src="images/arrows_orderby_desc{$forms.list.member.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$galaxylist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr align="center"> 
+          <td width="25%">{$galaxylist[list].gala} </td>
+          <td width="25%">{$galaxylist[list].tag} </td>
+          <td width="25%"> {$galaxylist[list].member|default:"keine"} </td>
+          <td width="25%"><a href="admin.php?action=galadetails&id={$galaxylist[list].gala}"><img src="images/buttons_details.gif" width="61" height="17" border="0"></a> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Galaxien gefunden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.list.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

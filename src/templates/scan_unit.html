@@ -1,0 +1,59 @@
+						<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.unit_scanner}
+                  title="gescannt von {$scan.unit_scanner}{if $scan.unit_svs} {$scan.unit_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Einheiten ({$scan.unit_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+								{if $scan.unit_timeout}<span class="red" style="cursor: help;" title="Einheitenscan ist älter als {$scan.timeout_hours} Stunden">{/if}
+                  {$scan.unit_scanage} alt
+                {if $scan.unit_timeout}</span>{/if}
+                </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Jäger:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.jaeger}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Bomber:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.bomber}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Fregatten:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.fregatten}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Zerstörer:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.zerstoerer}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Kreuzer:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.kreuzer}</td>
+              </tr>			  
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schlachter:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.schlachter}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Träger:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.traeger}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Kaperschiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.kleptoren}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schutzschiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.cancris}</td>
+              </tr>
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.unit_copy}');" name="unit_popup" type="button" class="form_small" value="IRC Copy" title="Einheitenscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.unit_link}');" name="unit_popup" type="button" class="form_small" value="IRC Popup" title="Einheitenscan  als Popup öffnen">
+                </td>
+              </tr>
+            </table>

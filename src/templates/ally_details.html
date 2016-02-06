@@ -1,0 +1,113 @@
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            
+          <td><b>Allianz {$ally.name}</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td colspan="2" class="tbl_6" height="30" width="30%"> 
+	  <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+          <td>
+					<a  title="Zurück" href="{$backlink}"><img src="images/buttons_back.gif" border="0"></a>&nbsp;&nbsp;
+                                                <form name="form" method="post" action="admin.php?action=user" style="display:inline">
+                                                 <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+                                                 <input name="subaction" type="hidden" id="subaction" value="search">
+                                                 <input name="ally" type="hidden" id="ally" value="{$ally.aid}">
+                                                 <input name="search" type="image" src="images/buttons_search.gif" title="Allianz-Mitglieder suchen" href="{$searchlink}" width="61" height="17" border="0">
+                                                </form>
+					{if $editlink}
+						<a title="Daten ändern" href="{$editlink}"><img src="images/buttons_edit.gif" width="61" height="17" border="0"></a>
+					{/if}
+					{if $deletelink}
+						<a title="Löschen" href="{$deletelink}"><img src="images/buttons_delete.gif" width="61" height="17" border="0"></a>
+					{/if}
+					</td>
+          </tr>
+        </table></td>
+	</tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+
+          <td>Tag</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr>
+
+          <td> {$ally.tag}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4">
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{if $ally.descr}
+	<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            
+          <td>Beschreibung</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+	          <td> {$ally.descr|default:"keine"}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+	{if $ally.irc}
+	<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            
+          <td>Irc Channel</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+	          <td> {$ally.irc}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+	{if $ally.url}
+	<tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            
+          <td>Homepage</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+	          <td> {$ally.url}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 

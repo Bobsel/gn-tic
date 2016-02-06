@@ -1,0 +1,753 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Kampfsimulator by KiBO|Huhn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="configs/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<form name="form" method="post" action="simulator.php" style="display:inline">
+  <input name="send" type="hidden" id="send" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <table width="500" align="center" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="3"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td ><b>Kampfsimulator</b> by KiBO|Huhn<br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td><strong>Schiffe</strong></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><strong>Verteidiger</strong></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><strong>Angreifer</strong></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Jäger "Leo"</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>
+			<input    tabindex="1" class="form" name="deff0" type="text" id="deff0" value="{$deff[0]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input    tabindex="17" class="form" name="attack0" type="text" id="attack0" value="{$attack[0]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Bomber "Aquilae" </td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="2" class="form" name="deff1" type="text" id="deff1" value="{$deff[1]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input   tabindex="18" class="form" name="attack1" type="text" id="attack1" value="{$attack[1]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Fregatte "Fronax"</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input  tabindex="3" class="form" name="deff2" type="text" id="deff2" value="{$deff[2]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input   tabindex="19" class="form" name="attack2" type="text" id="attack2" value="{$attack[2]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Zerst&ouml;rer &quot;Draco&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="4" class="form" name="deff3" type="text" id="deff3" value="{$deff[3]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input  tabindex="20"  class="form" name="attack3" type="text" id="attack3" value="{$attack[3]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Kreuzer &quot;Goron&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="5" class="form" name="deff4" type="text" id="deff4" value="{$deff[4]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input  tabindex="21"  class="form" name="attack4" type="text" id="attack4" value="{$attack[4]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Schlachtschiff &quot;Pentalin&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="6" class="form" name="deff5" type="text" id="deff5" value="{$deff[5]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input   tabindex="22" class="form" name="attack5" type="text" id="attack5" value="{$attack[5]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Tr&auml;gerschiff &quot;Zenit&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="7" class="form" name="deff6" type="text" id="deff6" value="{$deff[6]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input  tabindex="23"  class="form" name="attack6" type="text" id="attack6" value="{$attack[6]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Kaperschiff &quot;Cleptor&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="8" class="form" name="deff7" type="text" id="deff7" value="{$deff[7]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input  tabindex="24"  class="form" name="attack7" type="text" id="attack7" value="{$attack[7]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Schutzschiff &quot;Cancri&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="9" class="form" name="deff8" type="text" id="deff8" value="{$deff[8]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+			<input  tabindex="25"  class="form" name="attack8" type="text" id="attack8" value="{$attack[8]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Leichtes Orbitalgesch&uuml;tz &quot;Rubium&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="10" class="form" name="deff9" type="text" id="deff9" value="{$deff[9]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Leichtes Raumgesch&uuml;tz &quot;Pulsar&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="11" class="form" name="deff10" type="text" id="deff10" value="{$deff[10]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Mittlers Raumgesch&uuml;tz &quot;Coon&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="12" class="form" name="deff11" type="text" id="deff11" value="{$deff[11]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Schweres Raumgesch&uuml;tz &quot;Centurion&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="13" class="form" name="deff12" type="text" id="deff12" value="{$deff[12]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Abfangj&auml;ger &quot;Horus&quot;</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input  tabindex="14" class="form" name="deff13" type="text" id="deff13" value="{$deff[13]}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Metallextraktoren:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="15" class="form" name="metall" type="text" id="metall" value="{$metall}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" width="40%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Kristallextraktoren:</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input   tabindex="16" class="form" name="kristall" type="text" id="kristall" value="{$kristall}" size="15" maxlength="15"></td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="50%" > <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_1"> 
+		<td height="30" align="center">Ticks: <select  class="form" name="ticks" id="ticks">
+          <option value="1" {$deffsel1}>1 tick</option>
+          <option value="2" {$deffsel2}>2 ticks</option>
+          <option value="3" {$deffsel3}>3 ticks</option>
+          <option value="4" {$deffsel4}>4 ticks</option>
+          <option value="5" {$deffsel5}>5 ticks</option>
+        </select>&nbsp;Vorticks: <input name="vorticks" type="checkbox" value="1" {$vortickssel}></td>
+      <td height="30" colspan="2" align="center">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input name="calculate" type="submit"  class="button" id="calculate" value="Berechnen"></td>
+          </tr>
+        </table>
+	  </td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+	{if $ticklist}
+    <tr class="tbl_5"> 
+		<td height="30" align="center" colspan="3">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><strong>Auswertung</strong></td>
+          </tr>
+        </table>
+	  </td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="3"><img src="/" width="1" height="1"></td>
+    </tr>
+	{cycle values="tbl_1,tbl_2" print=no}
+	{foreach item=tick from=$ticklist}
+    <tr class="{cycle}"> 
+		<td height="30" align="center" colspan="3">
+			<table width="100%" cellspacing="0" cellpadding="0" class="tbl_small">
+          <tr> 
+            <td width="30%">{$tick.name}</td>
+            <td align="center" colspan="2">Verteidiger</td>
+            <td align="center" colspan="2">Angreifer</td>
+          </tr>
+          <tr> 
+            <td><strong>Typ</strong></td>
+            <td align="center"><strong>vorher</strong></td>
+            <td align="center"><strong>nachher</strong></td>
+            <td align="center"><strong>vorher</strong></td>
+            <td align="center"><strong>nachher</strong></td>
+          </tr>
+		
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Jäger</td>
+            <td align="center">{$tick[2][0]}</td>
+            <td align="center">{$tick[3][0]}</td>
+            <td align="center">{$tick[0][0]}</td>
+            <td align="center">{$tick[1][0]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Bomber</td>
+            <td align="center">{$tick[2][1]}</td>
+            <td align="center">{$tick[3][1]}</td>
+            <td align="center">{$tick[0][1]}</td>
+            <td align="center">{$tick[1][1]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Freggs</td>
+            <td align="center">{$tick[2][2]}</td>
+            <td align="center">{$tick[3][2]}</td>
+            <td align="center">{$tick[0][2]}</td>
+            <td align="center">{$tick[1][2]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Zerris</td>
+            <td align="center">{$tick[2][3]}</td>
+            <td align="center">{$tick[3][3]}</td>
+            <td align="center">{$tick[0][3]}</td>
+            <td align="center">{$tick[1][3]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Kreuzer</td>
+            <td align="center">{$tick[2][4]}</td>
+            <td align="center">{$tick[3][4]}</td>
+            <td align="center">{$tick[0][4]}</td>
+            <td align="center">{$tick[1][4]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Schlachter</td>
+            <td align="center">{$tick[2][5]}</td>
+            <td align="center">{$tick[3][5]}</td>
+            <td align="center">{$tick[0][5]}</td>
+            <td align="center">{$tick[1][5]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Träger</td>
+            <td align="center">{$tick[2][6]}</td>
+            <td align="center">{$tick[3][6]}</td>
+            <td align="center">{$tick[0][6]}</td>
+            <td align="center">{$tick[1][6]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Kaperschiffe</td>
+            <td align="center">{$tick[2][7]}</td>
+            <td align="center">{$tick[3][7]}</td>
+            <td align="center">{$tick[0][7]}</td>
+            <td align="center">{$tick[1][7]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Schutzschiffe</td>
+            <td align="center">{$tick[2][8]}</td>
+            <td align="center">{$tick[3][8]}</td>
+            <td align="center">{$tick[0][8]}</td>
+            <td align="center">{$tick[1][8]}</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Leichtes Orbitalgeschütz</td>
+            <td align="center">{$tick[2][9]}</td>
+            <td align="center">{$tick[3][9]}</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Leichtes Raumgeschütz</td>
+            <td align="center">{$tick[2][10]}</td>
+            <td align="center">{$tick[3][10]}</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Mittleres Raumgeschütz</td>
+            <td align="center">{$tick[2][11]}</td>
+            <td align="center">{$tick[3][11]}</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Schweres Raumgeschütz</td>
+            <td align="center">{$tick[2][12]}</td>
+            <td align="center">{$tick[3][12]}</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Abfangjäger</td>
+            <td align="center">{$tick[2][13]}</td>
+            <td align="center">{$tick[3][13]}</td>
+            <td align="center">&nbsp;</td>
+            <td align="center">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Metallexen geklaut:</td>
+            
+          <td align="center"><strong>{$tick.metall}</strong></td>
+            <td align="center" colspan="3">&nbsp;</td>
+          </tr>
+    <tr class="tbl_4"> 
+      <td colspan="5"><img src="/" width="1" height="1"></td>
+    </tr>
+          <tr> 
+            <td>Kristallexen geklaut:</td>
+	        <td align="center"><strong>{$tick.kristall}</strong></td>
+            <td align="center" colspan="3">&nbsp;</td>
+          </tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="3"></td>
+			</tr>
+		  </table>
+		  </td>
+	  </tr>
+	{/foreach}	
+    <tr class="{cycle}"> 
+		<td align="center" colspan="3">
+			<table width="100%" cellspacing="0" cellpadding="0" class="tbl_small">
+			<tr>
+			<td width="30%">Endbericht</td>
+			<td align="center" colspan="2">Verluste</td>
+			</tr>
+			<tr>
+			<td width="30%">Typ</td>
+			<td align="center">Verteidiger</td>
+			<td align="center">Angreifer</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Jäger</td>
+				<td align="center">{$defflost[0]}</td>
+				<td align="center">{$attlost[0]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Bomber</td>
+				<td align="center">{$defflost[1]}</td>
+				<td align="center">{$attlost[1]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Freggs</td>
+				<td align="center">{$defflost[2]}</td>
+				<td align="center">{$attlost[2]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Zerris</td>
+				<td align="center">{$defflost[3]}</td>
+				<td align="center">{$attlost[3]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Kreuzer</td>
+				<td align="center">{$defflost[4]}</td>
+				<td align="center">{$attlost[4]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Schlachter</td>
+				<td align="center">{$defflost[5]}</td>
+				<td align="center">{$attlost[5]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Träger</td>
+				<td align="center">{$defflost[6]}</td>
+				<td align="center">{$attlost[6]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Kaperschiffe</td>
+				<td align="center">{$defflost[7]}</td>
+				<td align="center">{$attlost[7]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Schutzschiffe</td>
+				<td align="center">{$defflost[8]}</td>
+				<td align="center">{$attlost[8]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Leichtes Orbitalgeschütz</td>
+				<td align="center">{$defflost[9]}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Leichtes Raumgeschütz</td>
+				<td align="center">{$defflost[10]}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Mittleres Raumgeschütz</td>
+				<td align="center">{$defflost[11]}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Schweres Raumgeschütz</td>
+				<td align="center">{$defflost[12]}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Abfangjäger</td>
+				<td align="center">{$defflost[13]}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Metallverluste</td>
+				<td align="center">{$ress[1][0]}</td>
+				<td align="center">{$ress[0][0]}</td>
+			</tr>
+			<tr> 
+				<td>Kristallverluste</td>
+				<td align="center">{$ress[1][1]}</td>
+				<td align="center">{$ress[0][1]}</td>
+			</tr>
+			<tr> 
+				<td>Insgesamt</td>
+				<td align="center">{$ress[1][2]}</td>
+				<td align="center">{$ress[0][2]}</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="1"></td>
+			</tr>
+			<tr> 
+				<td>Metallexen geklaut:</td>
+				<td align="center">{$metallstolen}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr> 
+				<td>Kristallexen geklaut:</td>
+				<td align="center">{$kristallstolen}</td>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr class="tbl_4"> 
+				<td colspan="5"><img src="/" width="1" height="3"></td>
+			</tr>
+
+			</table>
+			</td>
+	</tr>
+
+
+	{/if}
+
+    <tr class="tbl_5"> 
+      <td colspan="3"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>
+
+</body>
+</html>

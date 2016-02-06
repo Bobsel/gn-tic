@@ -1,0 +1,205 @@
+<script language="Javascript" src="functions/bbcode.js"></script>
+<script language="Javascript" src="functions/bbcode_language.js"></script>
+<form name="form" method="post" action="{$forms.addnews.url}" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="{$forms.addnews.action}">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Nachricht hinzuf&uuml;gen</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Titel</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td><input name="title" type="text" class="form{$forms.addnews.fields.title.bgrd}" id="title" value="{$forms.addnews.fields.title.value}" size="40" maxlength="200">
+              <br>{$forms.addnews.fields.title.error}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Text</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td valign="top"> <textarea name="message" cols="50" rows="8" class="form{$forms.addnews.fields.message.bgrd}" id="message">{$forms.addnews.fields.message.value}</textarea>
+              <br>{$forms.addnews.fields.message.error}</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Smilies</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>BBCode</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td align="center">
+<input id="radio" type="radio"
+	name="mode"
+	value="0"
+	title="Normal Mode: (alt+n)"
+	accesskey="n"
+	onclick="setmode(this.value)"
+	checked 
+	class="tbl_1">
+              einfacher Modus 
+    <input id="radio" type="radio"
+	name="mode"
+	value="1"
+	title="Normal Mode: (alt+e)"
+	accesskey="e"
+	onclick="setmode(this.value)"
+	class="tbl_1">
+              erweiterter Modus <br>  
+              <select onchange="fontformat(this.form,this.options[this.selectedIndex].value,'SIZE')"  name="sizeselect" class="tbl_1">
+                <option value="0" selected>SIZE 
+                <option value="1">klein 
+                <option value="2">mittel 
+                <option value="3">groﬂ 
+                <option value="4">riesig 
+              </select
+
+>
+              <select onchange="fontformat(this.form,this.options[this.selectedIndex].value,'FONT')" name="fontselect" class="tbl_1">
+                <option value="0" selected>FONT 
+                <option value="arial">Arial 
+                <option value="comic sans ms">Comic 
+                <option value="courier">Courier 
+                <option value="courier new">Courier New 
+                <option value="tahoma">Tahoma 
+                <option value="times new roman">Times New Roman 
+                <option value="verdana">Verdana 
+              </select
+
+>
+              <select onchange="fontformat(this.form,this.options[this.selectedIndex].value,'COLOR')" name="colorselect" class="tbl_1">
+                <option value="0" selected>COLOR 
+                <option value="skyblue" style="color:skyblue">sky blue</option>
+                <option value="royalblue" style="color:royalblue">royal blue</option>
+                <option value="blue" style="color:blue">blue</option>
+                <option value="darkblue" style="color:darkblue">dark-blue</option>
+                <option value="orange" style="color:orange">orange</option>
+                <option value="orangered" style="color:orangered">orange-red</option>
+                <option value="crimson" style="color:crimson">crimson</option>
+                <option value="red" style="color:red">red</option>
+                <option value="firebrick" style="color:firebrick">firebrick</option>
+                <option value="darkred" style="color:darkred">dark red</option>
+                <option value="green" style="color:green">green</option>
+                <option value="limegreen" style="color:limegreen">limegreen</option>
+                <option value="seagreen" style="color:seagreen">sea-green</option>
+                <option value="deeppink" style="color:deeppink">deeppink</option>
+                <option value="tomato" style="color:tomato">tomato</option>
+                <option value="coral" style="color:coral">coral</option>
+                <option value="purple" style="color:purple">purple</option>
+                <option value="indigo" style="color:indigo">indigo</option>
+                <option value="burlywood" style="color:burlywood">burlywood</option>
+                <option value="sandybrown" style="color:sandybrown">sandy brown</option>
+                <option value="sienna" style="color:sienna">sienna</option>
+                <option value="chocolate" style="color:chocolate">chocolate</option>
+                <option value="teal" style="color:teal">teal</option>
+                <option value="silver" style="color:silver">silver</option>
+              </select
+
+>
+              <select onchange="fontformat(this.form,this.options[this.selectedIndex].value,'ALIGN')" name="select2" class="tbl_1">
+                <option value="0" selected>Ausrichtung 
+                <option value="center">Center 
+                <option value="left">Left 
+                <option value="right">Right 
+                <option value="justify">Justify 
+              </select>
+              <br> 
+              <input id="middle_button" type="button" value=" B " onclick="bbcode(this.form,'B','')" title="BOLD (alt+b)" accesskey="b" name="button2" class="form" 
+>
+              <input id="middle_button" type="button" value=" I " onclick="bbcode(this.form,'I','')" title="ITALIC (alt+i)" accesskey="i" name="button2" class="form" 
+>
+              <input id="middle_button" type="button" value=" U " onclick="bbcode(this.form,'U','')" title="UNDERLINE (alt+u)" accesskey="u" name="button2" class="form"
+>
+              <input id="middle_button" type="button" value="http://" title="Hyperlink einf¸gen" 
+	onclick="namedlink(this.form,'URL')" name="button2" class="form"
+>
+              <input id="middle_button" type="button" value=" @ " title="Email Adresse einf¸gen" 
+	onclick="namedlink(this.form,'EMAIL')" name="button2" class="form"
+>
+              <input id="middle_button" type="button" value="IMG" title="Image einf¸gen" 
+	onclick="bbcode(this.form,'IMG','http://')"  name="button2" class="form"
+>
+              <input id="middle_button" type="button" value=" # " title="CODE" 
+	onclick="bbcode(this.form,'CODE','')"  name="button2" class="form"
+>
+              <input id="middle_button" type="button" value="Liste" title="Liste einf¸gen" accesskey="l" 
+	onclick="dolist(this.form)"  name="button2" class="form"
+>
+              <input id="middle_button" type="button" value="Zitat" title="Zitat einf¸gen" 
+	onclick="bbcode(this.form,'QUOTE','')" name="button2" class="form">
+            </td>
+          </tr>
+        </table>
+		</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+            <td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a></td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> 
+							<a href="{$backlink}" title="Zur¸ck"><img src="images/buttons_back.gif" border="0"></a> 
+              <input type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

@@ -1,0 +1,133 @@
+{literal}
+<script language="JavaScript" type="text/javascript">
+
+function checkGala(gala, status,obj) {
+	for(var i = 1; i <= 12; i++) {
+		scan = document.getElementById(gala+'_'+i);
+		if(scan != null && scan.type =="checkbox") {
+			if( status==1 ) {
+				scan.checked='checked';
+			}
+			if( status==0 ) {
+				scan.checked='';		
+			}
+		}
+	}
+	obj.blur();
+}
+{/literal}
+</script>
+<form name="form" method="post" action="attplan.php" style="display:inline">
+  <input name="id" type="hidden" id="id" value="{$attplan.attid}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+	<table width="100%" cellspacing="0" cellpadding="0">
+		<tr class="tbl_5"> 
+			<td > 
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+					<tr> 
+						<td style="padding: 5px"><b>{$attplan.title}</b><br> <br>
+							<a   class="noline" href="attplan.php?action=view&id={$attplan.attid}">Zurück zum Plan</a>&nbsp;&#8226;&nbsp;
+							<a  class="admin" href="attplan.php?action=edit&id={$attplan.attid}">Plan bearbeiten</a>
+							</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_4"> 
+			<td ><img src="/" width="1" height="1"></td>
+		</tr>
+		<tr style="padding: 5px;">
+			<td align="left" >
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td align="left">
+							<a  class="admin" href="attplan.php?action=addtargets&id={$attplan.attid}">Ziele hinzufügen</a>
+						</td>
+						<td align="right">
+							{$pagebar}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		{if $targets}
+			<tr>
+				<td colspan="2" align="left" style="padding: 5px;">
+					markierte Ziele: 
+					<select name="action" size="1" class="form" onChange="submit()">
+						<option>Aktion ausw&auml;hlen</option>
+						<option value="deleteallatter">Atter l&ouml;schen</option>
+						<option value="closetargets">als geschlossen markieren</option>
+						<option value="opentargets">als offen markieren</option>
+						<option value="deletetargets">aus Plan l&ouml;schen</option>
+        	</select>
+				</td>
+			</tr>
+		{/if}
+		<tr>
+			<td align="left" style="padding:2px">
+				<table width="100%" cellpadding="3"  cellspacing="1" bgcolor="#000000" >
+					<tr>
+						{foreach from=$targets item=target key=gala}
+							<td bgcolor="#EFEFEF" valign="top" style="padding: 3px;" width="20%">
+								<table  style="display: inline" cellspacing="1" cellpadding="3" width="100%" height="100%" align="left">
+									<tr>
+										<td bgcolor="#CCCCCC"  width="50%" align="center"> Koords 
+										</td>
+										<td bgcolor="#CCCCCC"  width="50%" align="center">
+											Atterstatus
+										</td>
+									</tr>
+									{foreach from=$target item=scan}
+										<tr>
+											<td bgcolor="#E8E7E7"  width="50%" align="right">
+											<table width="100%" cellpadding="0" cellspacing="0" style="display:inline">
+												<tr>
+													<td align="left" width="30%"><input id="{$scan.gala}_{$scan.pos}" name="sids[]" type="checkbox" value="{$scan.sid}"></td>
+													<td align="right" width="70%">{$scan.gala}:{$scan.pos}</td>
+												</tr>
+											</table>
+											</td>
+											<td bgcolor="#E8E7E7"  width="50%" align="left"
+												{if $scan.closed} class="green"  title="{$scan.gala}:{$scan.pos} ist als geschlossen markiert" style="cursor:help;"
+												{elseif !$scan.atter} class="red" title="{$scan.gala}:{$scan.pos} hat keine Angreifer" style="cursor:help;"
+												{/if}
+											>
+												{if $scan.atter}
+													{$scan.atter} Atter
+												{else}
+													keine
+												{/if}
+											</td>
+										</tr>
+									{/foreach}
+										<tr>
+											<td bgcolor="#E8E7E7"  width="50%" align="center">
+												<a href="#" onClick="checkGala('{$scan.gala}','1',this)">alle</a>
+											</td>
+											<td bgcolor="#E8E7E7"  width="50%" align="center">
+												<a href="#" onClick="checkGala('{$scan.gala}','0',this)">keine</a>
+											</td>
+										</tr>
+								</table>
+							</td>
+						{foreachelse}
+							<td bgcolor="#EFEFEF" valign="top" style="padding: 8px;" width="100%%" align="center">
+								keine Ziele vorhanden
+							</td>
+						{/foreach}
+						{if $spacer}
+							<td bgcolor="#EFEFEF" valign="top" style="padding: 3px;" width="{$spacer.width}%" colspan="{$spacer.colspan}">&nbsp;
+								
+							</td>
+						{/if}
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tbl_5"> 
+			<td ><br>
+			</td>
+		</tr>
+	</table>
+</form>

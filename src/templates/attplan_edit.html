@@ -1,0 +1,132 @@
+<form name="form" method="post" action="attplan.php" style="display:inline">
+  <input name="send" type="hidden" id="send" value="1">
+  <input name="id" type="hidden" id="id" value="{$attplan.attid}">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" value="edit">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td> <b>Angriffsplan '{$attplan.title}' bearbeiten</b><br> <br> </td>
+          </tr>
+        </table></td>
+    </tr>
+    {if $errors} 
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr>
+            <td>{foreach from=$errors item=error}{$error}<br>
+              {/foreach}</td>
+          </tr>
+        </table></td>
+    </tr>
+    {/if} 
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Titel</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input  name="title" type="text" class="{$items.title.class}" value="{$items.title.value}" size="41" maxlength="254"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Beschreibung</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <textarea name="descr" class="{$items.descr.class}" rows="5" cols="40">{$items.descr.value}</textarea> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"> <img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_5" height="30" width="30%" colspan="2" style="padding: 3px;"> 
+        <b>Zeit für Reservierungsstart festlegen</b></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"> <img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Start f&uuml;r Reservierung</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> Datum: 
+              <input  name="reserve_date" type="text" class="{$items.reserve_date.class}" value="{$items.reserve_date.value}" size="10" maxlength="40">
+              (dd.dd.dddd) &nbsp;&nbsp;&nbsp;Zeit: 
+              <input  name="reserve_time" type="text" class="{$items.reserve_time.class}" value="{$items.reserve_time.value}" size="5" maxlength="40">
+              (dd:dd) </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"> <img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td>Plan solange verstecken</td>
+          </tr>
+        </table></td>
+      <td class="tbl_1" width="70%" height="30"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+          <tr> 
+            <td> <input type="radio" name="hidden" value="{$items.hidden.list[0].value}" class="{$items.hidden.class}" {$items.hidden.list[0].checked}>
+              ja 
+              <input type="radio" name="hidden" value="{$items.hidden.list[1].value}" class="{$items.hidden.class}" {$items.hidden.list[1].checked}>
+              nein </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6" height="30" width="30%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td width="12"> <a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              <img src="images/arrows_help.gif" width="12" height="13" border="0"> 
+              </a> </td>
+            <td> <a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+              Hilfe </a> </td>
+          </tr>
+        </table></td>
+      <td class="tbl_6" height="30" width="70%"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr> 
+            <td> <a href="{$backlink}"><img src="images/buttons_back.gif" width="61" height="17" border="0"></a> 
+              <input  title="Speichern" type="image" border="0" name="next" src="images/buttons_next.gif" width="61" height="17"> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr class="tbl_5"> 
+      <td colspan="2"> <p><br>
+        </p></td>
+    </tr>
+  </table> 
+</form>

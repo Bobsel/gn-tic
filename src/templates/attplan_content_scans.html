@@ -1,0 +1,325 @@
+  <tr>
+		<td style="padding: 5px;"  align="center">
+			Gala: irgendeine
+		</td>
+	</tr>
+	{cycle print=false values="#EFEFEF"} 
+	{foreach item=scan from=$scanlist} {cycle print=false assign="color"} 
+  <tr> 
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#E8E7E7" style="padding: 5px;" > 
+			<table   width="100%" cellpadding="3"  cellspacing="1" bgcolor="#000000" >
+        <tr> 
+          <td   {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="{$color}">
+            <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="left">
+                  &nbsp;
+                  {if $scan.hasnews || $scan.hasmili}
+                    <a  href="javascript:switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')" title="Weitere Scans"><img src="images/plus.gif" border="0" id="hideimg{$scan.sid}"></a>
+                  {else}
+                    &nbsp;&nbsp;
+                  {/if}
+                  &nbsp;&nbsp;
+                  <a name="{$scan.sid}"></a>
+                  <a href="scans.php?gala={$scan.gala}&pos={$scan.pos}{$scan.backlink}"><b>{$scan.gala}:{$scan.pos} {$scan.nick}</b></a>
+                </td>
+                <td align="right">
+                {if $scan.simulator_link}
+                  <a href="{$scan.simulator_link}{$scan.backlink}" title="Im Kampfsimulator berechnen">Simulieren</a>&nbsp;&nbsp;
+                {else}
+                &nbsp;
+                {/if}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+				{if $scan.hasunit || $scan.hassector || $scan.hasgscan}
+        <tr> 
+          {if $scan.hassector}
+					<td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+						<table cellspacing="1" cellpadding="3" width="100%" height="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.sector_scanner}
+                  title="gescannt von {$scan.sector_scanner}{if $scan.sector_svs} {$scan.sector_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Sektor ({$scan.sector_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+                {if $scan.sector_time < $timeout}
+                  <span class="red" style="cursor: help;" title="Sektorscan ist älter als {$timeout_hours} Stunden">{$scan.sector_scandate}, {$scan.sector_scantime}</span>
+                {else}
+                  {$scan.sector_scandate}, {$scan.sector_scantime}
+                {/if}
+                </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Punkte:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_punkte2}</td>
+              </tr>
+              <tr style="cursor: help;" title="Exen in 5 Ticks: {$scan.sector_exen_5}, in 10 Ticks: {$scan.sector_exen_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left"><b><span class="red">{$scan.sector_exen}</span></b></td>
+              </tr>
+              <tr style="cursor: help;" title="Metall-Exen in 5 Ticks: {$scan.sector_metall_5}, in 10 Ticks: {$scan.sector_metall_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >M-Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_metall}</td>
+              </tr>
+              <tr style="cursor: help;" title="Kristall-Exen in 5 Ticks: {$scan.sector_kristall_5}, in 10 Ticks: {$scan.sector_kristall_10}"> 
+                <td   bgcolor="#E8E7E7" align="right" >K-Exen:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_kristall}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_ships}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Verteidigung:</td>
+	              <td  bgcolor="#E8E7E7" align="left">{$scan.sector_deff}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Asteroiden:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.sector_roids}</td>
+              </tr>
+              {section start=0 loop=`$scan.maxrows-8` name="sectorscan"}  
+                <tr> 
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+              {/section}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.sector_copy}');" name="sector_copy" type="button" class="form_small" value="IRC Copy" title="Sektorscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.sector_link}');" name="sector_popup" type="button" class="form_small" value="IRC Popup" title="Sektorscan als Popup öffnen">
+                </td>
+              </tr>
+            </table></td>
+					{/if}
+					{if $scan.hasgscan}
+          <td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+						<table cellspacing="1" cellpadding="3" width="100%" height="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.gscan_scanner}
+                  title="gescannt von {$scan.gscan_scanner}{if $scan.gscan_svs} {$scan.gscan_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Geschütz({$scan.gscan_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+                {if $scan.gscan_time < $timeout}
+                  <span class="red" style="cursor: help;" title="Geschützscan ist älter als {$timeout_hours} Stunden">{$scan.gscan_scandate}, {$scan.gscan_scantime}</span>
+                {else}
+                  {$scan.gscan_scandate}, {$scan.gscan_scantime}
+                {/if}
+              ?  </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Rubium:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_rubium}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Pulsar:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_pulsar}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Coon:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_coon}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Centurion:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_centurion}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Horus:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.gscan_horus}</td>
+              </tr>
+              {section start=0 loop=`$scan.maxrows-6` name="gscan"}
+                <tr> 
+                  <td colspan="2">&nbsp;</td>
+                </tr>
+              {/section}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.gscan_copy}');" name="gscan_copy" type="button" class="form_small" value="IRC Copy" title="Geschützscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.gscan_link}');" name="gscan_popup" type="button" class="form_small" value="IRC Popup" title="Geschützscan  als Popup öffnen">
+                </td>
+              </tr>
+            </table>
+					</td>
+					{/if}
+					{if $scan.hasunit}
+          <td bgcolor="{$color}" width="{$scan.width}%" valign="top" style="padding: 5px;"> 
+						<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="50%"
+                {if $scan.unit_scanner}
+                  title="gescannt von {$scan.unit_scanner}{if $scan.unit_svs} {$scan.unit_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+								>
+                  Einheiten ({$scan.unit_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="50%">
+                {if $scan.unit_time < $timeout}
+                  <span class="red" style="cursor: help;" title="Einheitenscan ist älter als {$timeout_hours} Stunden">{$scan.unit_scandate}, {$scan.unit_scantime}</span>
+                {else}
+                  {$scan.unit_scandate}, {$scan.unit_scantime}
+                {/if}
+                </td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Jäger:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.jaeger}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Bomber:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.bomber}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Fregatten:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.fregatten}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Zerstörer:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.zerstoerer}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Kreuzer:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.kreuzer}</td>
+              </tr>			  
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schlachter:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.schlachter}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Träger:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.traeger}</td>
+              </tr>
+              <tr> 
+                <td   bg?color="#E8E7E7" align="right">Kaperschiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.kleptoren}</td>
+              </tr>
+              <tr> 
+                <td   bgcolor="#E8E7E7" align="right">Schutzschiffe:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.cancris}</td>
+              </tr>
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.unit_copy}');" name="unit_popup" type="button" class="form_small" value="IRC Copy" title="Einheitenscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="center">
+                  <input onclick="popup('{$scan.unit_link}');" name="unit_popup" type="button" class="form_small" value="IRC Popup" title="Einheitenscan  als Popup öffnen">
+                </td>
+              </tr>
+            </table>
+						</td>
+						{/if}
+          </tr>
+					{/if}
+				{if $scan.hasmili} 
+        <tr id="militd{$scan.sid}" style="display: none;"> 
+          <td  style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} bgcolor="{$color}" valign="top"> 
+					<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="20%"
+                {if $scan.mili_scanner}
+                  title="gescannt von {$scan.mili_scanner}{if $scan.mili_svs} {$scan.mili_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Militär ({$scan.mili_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="80%">
+                {if $scan.mili_time < $timeout}
+                  <span class="red" style="cursor: help;" title="Militärscan ist älter als {$timeout_hours} Stunden">{$scan.mili_scandate}, {$scan.mili_scantime}</span>
+                {else}
+                  {$scan.mili_scandate}, {$scan.mili_scantime}
+                {/if}
+                </td>
+              </tr>
+              ?<tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Orbit:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[0]}</td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Flotte 1:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[1]}</td>
+              </tr>
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">Flotte 2:</td>
+                <td  bgcolor="#E8E7E7" align="left">{$scan.mili_formated_fleets[2]}</td>
+              </tr>
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.mili_copy}');" name="mili_popup" type="button" class="form_small" value="IRC Copy" title="Militärscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="left">
+                  <input onclick="popup('{$scan.mili_link}');" name="mili_popup" type="button" class="form_small" value="IRC Popup" title="Militärscan als Popup öffnen">
+                </td>
+              </tr>
+            </table></td>
+        </tr>
+        {/if} 
+				{if $scan.hasnews} 
+        <tr style="display: none;" id="newstd{$scan.sid}">
+          <td   style="padding: 5px;" {if $scan.colspan > 1}colspan="{$scan.colspan}"{/if} valign="top" bgcolor="{$color}"> 
+						<table cellspacing="1" cellpadding="3" width="100%">
+              <tr> 
+                <td   bgcolor="#CCCCCC" align="left" width="20%"
+                {if $scan.news_scanner}
+                  title="gescannt von {$scan.news_scanner}{if $scan.news_svs} {$scan.news_svs} SVS{/if}" style="cursor: help;"
+                {/if}
+                >
+                  Nachrichten ({$scan.news_prec}%)
+                </td>
+                <td  bgcolor="#CCCCCC" align="right" width="80%">
+                {if $scan.news_time < $timeout}
+                  <span class="red" style="cursor: help;" title="Sekto?rscan ist älter als {$timeout_hours} Stunden">{$scan.news_scandate}, {$scan.news_scantime}</span>
+                {else}
+                  {$scan.news_scandate}, {$scan.news_scantime}
+                {/if}
+                </td>
+              </tr>
+							{foreach from=$scan.news_formated_newsdata item=line}
+              <tr> 
+                <td align="right" valign="top"   bgcolor="#E8E7E7">{$line[1]}</td>
+                <td  bgcolor="#E8E7E7" align="left">{$line[2]}</td>
+              </tr>
+							{/foreach}
+              <tr> 
+                <td    valign="bottom" align="center">
+                  <input onclick="copy('{$scan.news_copy}');" name="news_popup" type="button" class="form_small" value="IRC Copy" title="Nachrichtenscan in die Zwischenablage kopieren"></td>
+                <td  valign="bottom" align="left">
+                  <input onclick="popup('{$scan.news_link}');" name="news_popup" type="button" class="form_small" value="IRC Popup" title="Nachrichtenscan als Popup öffnen">
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+				{/if}
+       </table>
+       {if $scan.expand}
+        <SCRIPT LANGUAGE="JavaScript" type="text/javascript">
+        <!--
+          switch_scans('{if $scan.hasmili}{$scan.sid}{/if}','{if $scan.hasnews}{$scan.sid}{/if}')
+        -->
+        </SCRIPT>
+       {/if}
+			</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#E8E7E7"><img src="/" width="1" height="10"></td>
+  </tr>
+  {foreachelse} 
+  <tr> 
+    <td  height="30" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Ziele vorhanden</strong></td>
+        </tr>
+      </table>
+	</td>
+  </tr>
+  {/foreach} 

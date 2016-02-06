@@ -1,0 +1,221 @@
+<form name="form" method="post" action="{$forms.fleetupdate.url}" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="{$forms.fleetupdate.action}">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Flotte updaten</b><br> <br> </td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+  <tr>
+    <td  class="tbl_6" height="15" colspan="2">
+			<table width="100%" cellpadding="3" cellspacing="3" class="tbl_6">
+				<tr> 
+					<td><strong>Flotte</strong></td>
+				</tr>
+			</table>
+		</td>
+  </tr>
+  <tr> 
+    <td  class="tbl_6" colspan="2"> 
+			<table cellpadding="0" cellspacing="0" class="tbl_6">
+          <tr align="center"> 
+					<td ><img src="/" width="5" height="1"></td>
+          <td>Flotte</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Cancris</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Freggs</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Zerris</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Kreuzer</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Schlachter</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Träger</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Jäger</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Bomber</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>Cleps</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+				<tr> 
+					<td ><img src="/" width="5" height="1"></td>
+					<td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+        <tr align="center"> 
+					<td ><img src="/" width="5" height="30"></td>
+          <td>Im Orbit</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.cancris}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.fregatten}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.zerstoerer}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.kreuzer}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.schlachter}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.traeger}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.jaeger}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.bomber}</td>
+					<td ><img src="/" width="3" height="1"></td>
+          <td>{$fleet0.kleptoren}</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+				<tr> 
+					<td ><img src="/" width="5" height="1"></td>
+					<td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+        <tr {if $fleet1.status == 1}class="tbl_red"{elseif $fleet1.status == 2}class="tbl_green"{/if}> 
+					<td ><img src="/" width="5" height="30"></td>
+          <td><select  onChange="submit()" class="form" name="fleet1status">
+                <option value="0" {$fleet1status0}>Im Orbit</option>
+                <option value="1" {$fleet1status1}>Angriff</option>
+                <option value="2" {$fleet1status2}>Verteidigung</option>
+              </select></td>
+					<td ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.cancris}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.fregatten}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.zerstoerer}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.kreuzer}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.schlachter}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.traeger}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.jaeger}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.bomber}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet1.kleptoren}</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+				<tr> 
+					<td ><img src="/" width="5" height="1"></td>
+					<td class="tbl_4" colspan="19"><img src="/" width="1" height="1"></td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+        <tr {if $fleet2.status == 1}class="tbl_red"{elseif $fleet2.status == 2}class="tbl_green"{/if}> 
+					<td ><img src="/" width="5" height="30"></td>
+          <td><select   onChange="submit()" class="form" name="fleet2status">
+                <option value="0" {$fleet2status0}>Im Orbit</option>
+                <option value="1" {$fleet2status1}>Angriff</option>
+                <option value="2" {$fleet2status2}>Verteidigung</option>
+              </select></td>
+					<td ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.cancris}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.fregatten}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.zerstoerer}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.kreuzer}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.schlachter}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.traeger}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.jaeger}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.bomber}</td>
+					  <td align="center" ><img src="/" width="3" height="1"></td>
+            <td align="center">{$fleet2.kleptoren}</td>
+					<td ><img src="/" width="5" height="1"></td>
+				</tr>
+			</table>
+		</td>
+  </tr>
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    {if $errors}
+    <tr> 
+      <td class="tbl_6" colspan="2"> <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+		<tr><td>{foreach from=$errors item=error}{$error}<br>{/foreach}</td></tr>
+		</table>
+    	</td>
+			</tr>
+	<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+	<tr>
+		<td class="tbl_6" height="30" width="30%"> 
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					<td>Flotte:</td>
+				</tr>
+			</table>
+		</td>
+		<td class="tbl_1" width="70%" height="30">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1">
+				<tr> 
+					<td> <textarea name="fleet" cols="30" rows="5" class="form{$items.fleet.class}" id="nick">{$items.fleet.value}</textarea>
+            </td>
+					<td><p>Ihr geht in euren Takscreen, klickt auf eure Flotte und markiert 
+							die Daten von &quot;J&auml;ger&quot; bis zur 2ten Flotte Schutzschiffe.<br>
+							Beispiel:<br>
+							J&auml;ger 0 0 100 .......<br>
+							.<br>
+							.<br>
+							Schutzschiffe: 1000 0 0<br>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+  </tr>
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr> 
+		<td class="tbl_6" height="30" width="30%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					<td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+					<td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+						Hilfe </a>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="tbl_6" height="30" width="70%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					<td> 
+						<input name="next" type="image" id="next" src="images/buttons_next.gif" width="61" height="17" border="0"> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr class="tbl_5"> 
+		<td colspan="2"> <p><br>
+			</p>
+		</td>
+	</tr>
+</table> 
+</form>

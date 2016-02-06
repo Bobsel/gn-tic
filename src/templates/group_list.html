@@ -1,0 +1,89 @@
+
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td colspan="2"><b>Gruppenliste</b><br> <br> </td>
+        </tr>
+        <tr> 
+          <td width="50%" align="left"> <div title="Neue Gruppe hinzufügen"></div></td>
+          <td width="50%" align="right">{$forms.grouplist.pages}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" height="30" colspan="2"> 
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+        <tr> 
+          <td width="25%">Name <a href="admin.php?action=groups&sort=name&order=asc"><img src="images/arrows_orderby_asc{$forms.grouplist.name.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=groups&sort=name&order=desc"><img src="images/arrows_orderby_desc{$forms.grouplist.name.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">Beschreibung <a href="admin.php?action=groups&sort=descr&order=asc"><img src="images/arrows_orderby_asc{$forms.grouplist.descr.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=groups&sort=descr&order=desc"><img src="images/arrows_orderby_desc{$forms.grouplist.descr.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">Mitglieder <a href="admin.php?action=groups&sort=member&order=asc"><img src="images/arrows_orderby_asc{$forms.grouplist.member.asc}.gif" width="12" height="13" border="0"></a> 
+            <a href="admin.php?action=groups&sort=member&order=desc"><img src="images/arrows_orderby_desc{$forms.grouplist.member.desc}.gif" width="12" height="13" border="0"></a> 
+          </td>
+          <td width="25%">&nbsp;</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {cycle print=false values="tbl_2,tbl_1"}
+  {section name=list loop=$grouplist}
+  {cycle print=false assign="class"}
+  <tr> 
+    <td  class="{$class}" height="30" colspan="2"> 
+      <table class="{$class}" width="100%" cellspacing="0" cellpadding="3">
+        <tr align="center"> 
+          <td width="25%">{$grouplist[list].name} </td>
+          <td width="25%">{$grouplist[list].descr|default:"keine"} </td>
+          <td width="25%"> {$grouplist[list].member|default:"keine"} </td>
+          <td width="25%"><a href="admin.php?action=groupdetails&id={$grouplist[list].gid}"><img src="images/buttons_details.gif" width="61" height="17" border="0"></a> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {sectionelse}
+  <tr> 
+    <td  class="tbl_2" height="30" colspan="2"> 
+      <table class="tbl_2" width="100%" cellspacing="0" cellpadding="3">
+        <tr> 
+          <td align="center"><strong>Keine Gruppen gefunden</strong></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_4"> 
+    <td colspan="2"><img src="/" width="1" height="1"></td>
+  </tr>
+  {/section}
+  <tr class="tbl_5">
+    <td colspan="2">
+      <table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+        <tr> 
+          <td> 
+            <div align="right">{$forms.grouplist.pages}</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>

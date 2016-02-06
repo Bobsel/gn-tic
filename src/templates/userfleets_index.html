@@ -1,0 +1,112 @@
+{strip}
+<!-- TEMPLATE - STANDARD - MASTERSEARCH SEARCH CASE BOARD FORUMS -->
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr class="tbl_5"> 
+    <td style="padding: 3px;"> 
+      <b>Flottenpflege</b><br> <br>
+    </td>
+  </tr>
+  <tr > 
+    <td class="tbl_4"><img src="/" alt="" width="1" height="1"></td>
+  </tr>
+  <tr> 
+    <td class="tbl_6" style="padding: 5px;">
+      <form   style="display:inline" action="user.php" method="post" name="form1">
+      <input name="action" type="hidden" value="fleets">
+      <input name="subaction" type="hidden" value="filter">
+      <input name="send" type="hidden" value="1">
+        <table align="right" cellspacing="0" cellpadding="3" class="tbl_6">
+          <tr align="center"> 
+            <td align="center">
+              Allianz: {$ally.name}
+            </td>
+            <td align="center">
+            Galaxie: 
+              <select   onChange="submit()" class="form" name="galaxy" id="galaxy">
+                {foreach from=$galalist item=item}
+                <option value="{$item.gala}" {$item.selected}>{$item.gala}</option>
+                {foreachelse}
+                <option value="0" {$item.selected}>keine vorhanden</option>
+                {/foreach}
+              </select>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 3px">
+      <table width="100%" cellpadding="1"  cellspacing="1" bgcolor="#000000">
+        {foreach from=$list item=user}
+          <tr>
+            <td bgcolor="#EFEFEF" style="padding-bottom: 10px">
+              <table cellspacing="1" cellpadding="1" width="100%" height="100%">
+                <tr>
+                  <td colspan="12" style="padding-top: 10px">
+                    <table width="100%" >
+                      <tr>
+                        <td width="50%" cellspacing="0" cellpadding="0"><a name="{$user.uid}"></a>
+                          <b>({$user.gala}:{$user.pos}) {$user.nick}</b>&nbsp;&nbsp;&nbsp;
+                          {if $user.fleettype == 1}
+                            <span class="red">[zweite Flotte offensiv]</span>
+                          {elseif $user.fleettype == 2}
+                            <span class="green">[zweite Flotte deffensiv]</span>
+                          {/if}
+                        </td>
+                        <td width="50%" align="right">
+                          letztes update: 
+                          {if $user.fleettime}
+                            {$user.fleetdate}, {$user.fleettime} Uhr 
+                          {else}
+                            noch nie
+                          {/if}
+                          &nbsp;&nbsp;&nbsp;<a href="user.php?action=fleet&id={$user.uid}" title="Flotte updaten" class="admin">Bearbeiten</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" bgcolor="#CCCCCC">Flotte</td>
+                  <td align="center" bgcolor="#CCCCCC">Cancris</td>
+                  <td align="center" bgcolor="#CCCCCC">Freggs</td>
+                  <td align="center" bgcolor="#CCCCCC">Zerris</td>
+                  <td align="center" bgcolor="#CCCCCC">Kreuzer</td>
+                  <td align="center" bgcolor="#CCCCCC">Schlachter</td>
+                  <td align="center" bgcolor="#CCCCCC">Träger</td>
+                  <td align="center" bgcolor="#CCCCCC">Jäger</td>
+                  <td align="center" bgcolor="#CCCCCC">Bomber</td>
+                  <td align="center" bgcolor="#CCCCCC">Cleps</td>
+                  <td align="center" bgcolor="#CCCCCC">IRC Copy</td>
+                  <td align="center" bgcolor="#CCCCCC">IRC Popup</td>
+                </tr>
+                {foreach from=$user.fleets item=fleet} 
+                  <tr class="{$fleet.class}"> 
+                    <td align="center" bgcolor="#E8E7E7" nowrap>{$fleet.dir}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.cancris}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.fregatten}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.zerstoerer}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.kreuzer}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.schlachter}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.traeger}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.jaeger}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.bomber}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap>{$fleet.kleptoren}</td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap><a  class="menu"  onClick="javascript:copy('{$fleet.irc}');" href="#">{$fleet.name}</a></td>
+                    <td align="center"  bgcolor="#E8E7E7" nowrap><a  class="menu"  onClick="javascript:popup('{$fleet.irc}');" href="#">{$fleet.name}</a></td>
+                  </tr>
+                {/foreach} 
+              </table>
+            </td>
+          </tr>
+        {/foreach}
+      </table>
+    </td>
+  </tr>
+  <tr class="tbl_5"> 
+    <td colspan="2"><br>
+    </td>
+  </tr>
+</table>
+{/strip}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    @author VxR <vxr@vxr.it>
+    @version $Revision: 1.1 $
+    @since 0.5
+-->
+<log4php:configuration xmlns:log4php="http://www.vxr.it/log4php/" threshold="all" debug="false">
+    <log4php:appender name="xmlrpcserver" class="LoggerAppenderRollingFile">
+        <param name="filename" value="log/xmlrpcserver.log"/>
+		<layout class="LoggerPatternLayout">
+			<param name="ConversionPattern" value="%d [%c:%p] %F:%L - %m%n"/>
+		</layout>
+    </log4php:appender>
+    <log4php:appender name="firephp" class="LoggerAppenderFirePHP">
+        <param name="threshold" value="DEBUG"/>
+    </log4php:appender>
+    <log4php:appender name="errorLog" class="LoggerAppenderRollingFile">
+        <param name="filename" value="log/error.log"/>
+        <param name="threshold" value="ERROR"/>
+		<layout class="LoggerPatternLayout">
+			<param name="ConversionPattern" value="%d [%c:%p] %F:%L - %m%n"/>
+		</layout>
+    </log4php:appender>
+    <log4php:appender name="debugLog" class="LoggerAppenderRollingFile">
+        <param name="filename" value="log/debug.log"/>
+        <param name="threshold" value="DEBUG"/>
+        <layout class="LoggerPatternLayout">
+			<param name="ConversionPattern" value="%d [%c:%p] %F:%L - %m%n"/>
+		</layout>
+    </log4php:appender>
+    <log4php:appender name="html" class="LoggerAppenderEcho">
+        <layout class="LoggerLayoutHtml" />
+    </log4php:appender>
+    <log4php:root>
+        <log4php:level value="ERROR" />
+        <log4php:appender_ref ref="errorLog"/>
+        <log4php:appender_ref ref="firephp" />
+        <log4php:appender_ref ref="debugLog" />
+    </log4php:root>
+    <log4php:logger name="xmlrpcserver">
+        <log4php:level value="DEBUG" />
+        <log4php:appender_ref ref="xmlrpcserver" />
+    </log4php:logger>
+    <log4php:logger name="default">
+        <log4php:level value="DEBUG" />
+    </log4php:logger>
+    <log4php:logger name="db">
+        <log4php:level value="DEBUG" />
+    </log4php:logger>
+</log4php:configuration>

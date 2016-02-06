@@ -1,0 +1,154 @@
+<form name="form" method="post" action="user.php" style="display:inline">
+  <input name="send" type="hidden" value="1">
+  <input name="ssid" type="hidden" id="ssid" value="{$session.id}">
+  <input name="action" type="hidden" id="action" value="fleetstatus">
+  <input name="id" type="hidden" value="{$id}">
+  <input name="fleet" type="hidden" value="{$fleet}">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr class="tbl_5"> 
+      <td colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_5">
+          <tr> 
+            <td><b>Flottenstatus updaten</b><br> <br></td>
+          </tr>
+        </table>
+			</td>
+    </tr>
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    {if $errors}
+    <tr> 
+      <td class="tbl_6" colspan="2">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr><td>{foreach from=$errors item=error}{$error}<br>{/foreach}</td></tr>
+				</table>
+    	</td>
+		</tr>
+		<tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+	{/if}
+	<tr>
+		<td class="tbl_6">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6"><tr><td>
+				Flottenstatus:
+			</td></tr></table>
+		</td>
+		<td  class="tbl_1">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1"><tr><td>
+				<select   onChange="submit()" class="form" name="status" id="status">
+					{foreach from=$items.status.list item=value}
+            <option value="{$value.value}" {$value.selected}>{$value.title}</option>
+          {/foreach}
+				</select>
+			</td></tr></table>
+		</td>
+	</tr>
+	{if $items.status.value == 1 || $items.status.value == 2}
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+		<tr> 
+			<td class="tbl_6">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6"><tr><td>
+					Koords (optional):
+				</td></tr></table>
+			</td>
+			<td class="tbl_1">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1"><tr><td>
+					<input name="target" type="text"  class="{$items.target.class}" value="{$items.target.value}" size="10" maxlength="10">
+				</td></tr></table>
+			</td>
+		</tr>
+  {/if}
+	{if $items.status.value > 0}
+    <tr class="tbl_4"> 
+      <td colspan="2"><img src="/" width="1" height="1"></td>
+    </tr>
+    <tr> 
+      <td class="tbl_6">
+        <table width="100%" cellspacing="0" cellpadding="3" class="tbl_6"><tr><td>
+          Flugzeit (ETA):
+        </td></tr></table>
+      </td>
+      <td  class="tbl_1">
+        <table width="100%" cellspacing="0" cellpadding="3" class="tbl_1"><tr><td>
+          <input name="eta" type="text"  class="{$items.eta.class}" id="eta" value="{$items.eta.value}" size="10" maxlength="10">
+        </td></tr></table>
+      </td>
+    </tr>
+	{/if}
+	{if $items.status.value == 2}
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr> 
+		<td class="tbl_6">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6"><tr><td>
+				Verteidigung:
+			</td></tr></table>
+		</td>
+		<td  class="tbl_1">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1"><tr><td>
+				<select name="defftype" class="form">
+					{foreach from=$items.defftype.list item=item}
+            <option value="{$item.value}" {$item.selected}>{$item.title}</option>
+          {/foreach}
+				</select>
+			</td></tr></table>
+		</td>
+	</tr>
+	{/if}
+	{if $items.status.value == 1 || $items.status.value == 2 }
+		<tr class="tbl_4"> 
+			<td colspan="2"><img src="/" width="1" height="1"></td>
+		</tr>
+		<tr> 
+			<td class="tbl_6">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6"><tr><td>
+					Zeit im Orbit:
+				</td></tr></table>
+			</td>
+			<td class="tbl_1">
+				<table width="100%" cellspacing="0" cellpadding="3" class="tbl_1"><tr><td>
+          <input name="orbit" type="text"  class="{$items.orbit.class}" id="orbit" value="{$items.orbit.value}" size="10" maxlength="10">
+				</td></tr></table>
+			</td>
+		</tr>
+	{/if}
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr> 
+		<td class="tbl_6" height="30" width="30%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					<td width="12"><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"><img src="images/arrows_help.gif" width="12" height="13" border="0"></a></td>
+					<td><a href="javascript:var w=window.open('help.php','_blank','width=320,height=400,resizable=no');"> 
+						Hilfe </a>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td class="tbl_6" height="30" width="70%">
+			<table width="100%" cellspacing="0" cellpadding="3" class="tbl_6">
+				<tr> 
+					  <td> 
+							<a href="{$backlink}" title="Zurück"><img src="images/buttons_back.gif" border="0"></a> 
+              <input name="next" type="image" id="next" src="images/buttons_next.gif" width="61" height="17" border="0"> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="tbl_4"> 
+		<td colspan="2"><img src="/" width="1" height="1"></td>
+	</tr>
+	<tr class="tbl_5"> 
+		<td colspan="2"> <p><br>
+			</p>
+		</td>
+	</tr>
+</table> 
+</form>
